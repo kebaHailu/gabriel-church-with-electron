@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import "./wetatoch.css";
-import {Typography,Box, Grid,TextField,Checkbox } from "@mui/material";
+import {Typography,Box, Grid,TextField } from "@mui/material";
+import Button from '@mui/material/Button';
 import {InputLabel,MenuItem, FormControl,Select } from "@mui/material";
 import { DatePicker } from '@mui/x-date-pickers';
+import ProfilePictureUploader from "../ProfilePicture/ProfilePictureUploader";
 
 
 export default function Wetatoch() {
@@ -18,13 +20,14 @@ export default function Wetatoch() {
     const [education, educationChange] = useInput('');
     const [cheducation, cheducationChange] = useInput('');
     const [churchContrbution, churchContrbutionChange] = useInput('');
+    const [otherchurch, otherchurchChange] = useInput('');
  
     return (
         <div className="title">
             <Typography variant='h4'>የሰበታ መካነ ሰላም ቅዱስ ገብርኤል ቤተክርስቲያን የፍሬ ሃይማኖት ሰንበት ትምህርት ቤት የአባላት ቅጽ</Typography>
        
            
-            <form id="wetatoch-form">
+            <form  id="wetatoch-form">
 
                 <div className = "personal-info">
                 <Box component="form"
@@ -38,7 +41,9 @@ export default function Wetatoch() {
                     
                     <TextField 
                         className="personal-info-input"
+                        id = "fullName"
                         label="ሙሉ ስም"
+                        required = {true}
                         variant="standard"
                         helperText="የሙሉ ስም ያስገቡ"
                     />
@@ -205,9 +210,9 @@ export default function Wetatoch() {
                     <Select
 
                         
-                        value={cheducation}
-                        label="cheducation"
-                        onChange={cheducationChange}
+                        value={otherchurch}
+                        label="otherchurch"
+                        onChange={otherchurchChange}
                     >
                         <MenuItem value={1}>አገልግዬ አላውቅም</MenuItem>
                         <MenuItem value={2}>በአመራር</MenuItem>
@@ -215,29 +220,8 @@ export default function Wetatoch() {
                         <MenuItem value={4}>በአባልነት</MenuItem>   
                     </Select>
                     </FormControl>
-                    <TextField 
-                        className="personal-info-input"
-                        label="ተጨማሪ ስልክ ቁጥር "
-                        variant="standard"
-                    />
-                    <TextField 
-                        className="personal-info-input"
-                        label="ኢሜይል"
-                        variant="standard"
-                    />
-                    <FormControl className="formcontrol"  >
-                    <InputLabel id="demo-simple-select-label">የትዳር ሁኔታ</InputLabel>
-                    <Select
-                        
-                        value={marriage}
-                        label="marriage"
-                        onChange={marriageChange}
-                    >
-                        <MenuItem value={1}>ያገባ</MenuItem>
-                        <MenuItem value={2}>ያላገባ</MenuItem>
-                    </Select>
-                    </FormControl>
-                     
+                   
+
                     <TextField 
                         className="personal-info-input"
                         label="የክፍሉ ተጠሪ ስም"
@@ -246,6 +230,12 @@ export default function Wetatoch() {
                         <DatePicker
                             label="የተመዘገቡበት ቀን"
                             />
+                    
+                     <ProfilePictureUploader />
+
+                     <Button variant="contained" color="primary" type="submit" style={{marginTop: 4 + 'em'}}>
+                        ይህንን ቅጽ መዝግብ
+                    </Button>
                     
                     
                     </Box>
