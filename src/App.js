@@ -9,7 +9,6 @@ function App({ children }) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
     <div className="App">
       <SideNavBar />
-      <Wetatoch />
 
 
     </div>

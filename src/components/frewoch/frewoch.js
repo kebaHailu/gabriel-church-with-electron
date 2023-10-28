@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./wetatoch.css";
+import "./frewoch.css";
 import {Typography,Box, Grid,TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import {InputLabel,MenuItem, FormControl,Select } from "@mui/material";
@@ -26,7 +26,7 @@ const PhoneInput = (props) => {
   
 
 
-export default function Wetatoch() {
+export default function Frewoch() {
     function useInput(initialValue) {
         const [state, setState] = useState(initialValue);
         const handleChange = (event) => {
@@ -43,7 +43,7 @@ export default function Wetatoch() {
  
     return (
         <div className="title">
-            <Typography variant='h4'>የፍሬ ሃይማኖት ሰንበት ትምህርት ቤት የወጣቶች አባላት ቅጽ መሙያ</Typography>
+            <Typography variant='h4'>የፍሬ ሃይማኖት ሰንበት ትምህርት ቤት የፍሬ አባላት ቅጽ መሙያ</Typography>
        
            
             <form  id="wetatoch-form">
