@@ -43,7 +43,7 @@ export default function Makelawian() {
  
     return (
         <div className="title">
-            <Typography variant='h4'>የፍሬ ሃይማኖት ሰንበት ትምህርት ቤት የማእክላዊያን አባላት ቅጽ መሙያ</Typography>
+            <Typography variant='h4'>የማእከላዊያን አባላት ቅጽ መሙያ</Typography>
        
            
             <form  id="wetatoch-form">
@@ -56,8 +56,8 @@ export default function Makelawian() {
                         
                     }}
                     >
-                    <Typography variant='h5' >ግላዊ መረጃ</Typography>
-                    
+                    <Typography variant='h5' >የአባሉ መረጃ</Typography>
+                    <ProfilePictureUploader />
                     <TextField 
                         className="personal-info-input"
                         id = "fullName"
@@ -70,6 +70,15 @@ export default function Makelawian() {
                         <DatePicker
                             label="የትውልድ ዘመን፡"
                             />
+                    
+                  <TextField 
+                      className="personal-info-input"
+                      name="churchName"
+                      required
+                      label="የክርስትና ስም"
+                      variant="standard"
+                  />
+                      
                     
                 <FormControl className="formcontrol"  >
                 <InputLabel id="sex">ፆታ</InputLabel>
@@ -85,20 +94,71 @@ export default function Makelawian() {
                 </Select>
                 </FormControl>
 
-                     <TextField 
+                <TextField 
+                      className="personal-info-input"
+                      name="churchFatherName"
+                      label="የንስሐ አባት ስም"
+                      variant="standard"
+                  />
+                  <TextField 
+                      className="personal-info-input"
+                      name="churchFatherPhone"
+                      label="የንስሕ አባት ስ.ቁ"
+                      variant="standard"
+                      InputProps={{
+                          inputComponent: PhoneInput,
+                      }}
+                  />
+
+                    
+                       
+                    <TextField 
                         className="personal-info-input"
                         name = "address"
                         label="የመኖሪያ አድራሻ"
                         variant="standard"
-                    />
-                   
-                    <TextField 
+                    />  
+              <FormControl className="formcontrol"  >
+              <InputLabel  >የቤተክርስቲያን አገልግሎት</InputLabel>
+              <Select
+                  
+                  value={churchContrbution}
+                  label="churchContrbution"
+                  onChange={churchContrbutionChange}
+              >
+                  <MenuItem value={1}>ከበሮ መምታት</MenuItem>
+                  <MenuItem value={2}>ዜማ መድረስ</MenuItem>
+                  <MenuItem value={3}>የዝማሬ መሣሪያዎች ችሎታ</MenuItem>
+                  <MenuItem value={4}>ሥነጽሁፍ ድርሰት</MenuItem>
+                  <MenuItem value={5}>በክህነት</MenuItem>
+              </Select>
+              </FormControl>
+
+              <TextField 
                         className="personal-info-input"
                         name = "houseNumber"
                         label="የቤት ቁጥር"
                         variant="standard"
                     />
-                    <TextField 
+                  
+                   <FormControl className="formcontrol"  >
+                  <InputLabel id="demo-simple-select-label">የተከታተሉት የመንፈሳዊ ት/ት</InputLabel>
+                  <Select
+
+                      
+                      value={cheducation}
+                      label="cheducation"
+                      onChange={cheducationChange}
+                  >   <MenuItem value={0}>አልተከታተልኩም</MenuItem>
+                      <MenuItem value={1}>ቀዳማይ</MenuItem>
+                      <MenuItem value={2}>ሳልሳይ</MenuItem>
+                      <MenuItem value={3}>ካልዓይ</MenuItem>
+                      <MenuItem value={4}>ራብዓይ</MenuItem>
+                  </Select>
+                  </FormControl>
+
+
+                  <TextField 
                         className="personal-info-input"
                         name = "phone1"
                         label="የሞባይል ስልክ ቁጥር "
@@ -107,6 +167,27 @@ export default function Makelawian() {
                             inputComponent: PhoneInput,
                         }}
                     />
+                 
+                  
+                   <FormControl className="formcontrol"  >
+                  <InputLabel id="demo-simple-select-label">በሌላ ሰ/ት/ቤት ያገለገሉበት ዘርፍ?</InputLabel>
+                  <Select
+
+                      
+                      value={otherchurch}
+                      label="otherchurch"
+                      onChange={otherchurchChange}
+                  >
+                      <MenuItem value={1}>አገልግዬ አላውቅም</MenuItem>
+                      <MenuItem value={2}>በአመራር</MenuItem>
+                      <MenuItem value={3}>በክህነት</MenuItem>
+                      <MenuItem value={4}>በአባልነት</MenuItem>   
+                  </Select>
+                  </FormControl>
+                  
+                   
+                    
+                    
                     <TextField 
                         className="personal-info-input"
                         name = "phone2"
@@ -123,24 +204,6 @@ export default function Makelawian() {
                         variant="standard"
                     />
                     <FormControl className="formcontrol"  >
-                    <InputLabel id="demo-simple-select-label">የትዳር ሁኔታ</InputLabel>
-                    <Select
-                        
-                        value={marriage}
-                        label="marriage"
-                        onChange={marriageChange}
-                    >
-                        <MenuItem value={10}>ያገባ</MenuItem>
-                        <MenuItem value={20}>ያላገባ</MenuItem>
-                    </Select>
-                    </FormControl>
-                     <TextField 
-                        className="personal-info-input"
-                        name="occupation"
-                        label="የሥራ ሁኔታ"
-                        variant="standard"
-                    />
-                    <FormControl className="formcontrol"  >
                     <InputLabel id="demo-simple-select-label">የት/ት ደረጃ</InputLabel>
                     <Select
                         
@@ -148,38 +211,30 @@ export default function Makelawian() {
                         label="education"
                         onChange={educationChange}
                     >
-                        <MenuItem value={1}>ፒኤችዲ</MenuItem>
-                        <MenuItem value={2}>ማስተርስ</MenuItem>
-                        <MenuItem value={3}>ዲግሪ</MenuItem>
                         <MenuItem value={4}>ዲፕሎማ</MenuItem>
+                        <MenuItem value={4}>መሰናዶ</MenuItem>
                         <MenuItem value={5}>2ኛ ደርጃ</MenuItem>
                         <MenuItem value={6}>1ኛ ደርጃ</MenuItem>
                     </Select>
                     </FormControl>
-                     <TextField 
-                        className="personal-info-input"
-                        name="workPlace"
-                        label="የተሰማሩበት የሥራ ዘርፍ"
-                        variant="standard"
-                    />
                     <TextField 
                         className="personal-info-input"
-                        name="telegramUsername"
-                        label="የቴሌግራም ዩዘር ስም"
+                        name = "educationName"
+                        label="የትምህርት ቤቱ ስም"
                         variant="standard"
                     />
+                   
                     
                      <TextField 
-                        className="family"
+                        className="family-unique"
                         name="family"
                         fullWidth
                         multiline
                         rows={4}
+                        
                         label="የቤተሰብ አባላት ከስልክ ቁጥር ጋር"
                         
                     />
-                  
-                   
                     </Box>
                 </div>
     
@@ -191,80 +246,42 @@ export default function Makelawian() {
                         
                     }}
                     >
-                    <Typography variant='h5' >ምንፈሳዊ መረጃ</Typography>
-                    <TextField 
-                        className="personal-info-input"
-                        name="churchName"
-                        required
-                        label="የክርስትና ስም"
-                        variant="standard"
-                    />
-                
-                <FormControl className="formcontrol"  >
-                <InputLabel  >የቤተክርስቲያን አገልግሎት</InputLabel>
-                <Select
+
+
+                          <Typography variant="h5" >የተጠሪ መረጃ</Typography>
+                          <ProfilePictureUploader 
+/>
+
+<TextField 
+    className="personal-info-input"
+    name="respondantName"
+    label="የተጠሪ ስም"
+    variant="standard"
+/>
+  <TextField 
+    className="personal-info-input"
+    name="respondantFamilyResponse"
+    label="የተጠሪ የቤተሰብ ሃላፊነት"
+    variant="standard"
+/>
+   
+
+ <TextField 
+    className="personal-info-input"
+    name="occupation"
+    label="የሥራ ሁኔታ"
+    variant="standard"
+/>
+ <TextField 
+    className="personal-info-input"
+    name="workPlace"
+    label="የተሰማሩበት የሥራ ዘርፍ"
+    variant="standard"
+/>
+
                     
-                    value={churchContrbution}
-                    label="churchContrbution"
-                    onChange={churchContrbutionChange}
-                >
-                    <MenuItem value={1}>ከበሮ መምታት</MenuItem>
-                    <MenuItem value={2}>ዜማ መድረስ</MenuItem>
-                    <MenuItem value={3}>የዝማሬ መሣሪያዎች ችሎታ</MenuItem>
-                    <MenuItem value={4}>ሥነጽሁፍ ድርሰት</MenuItem>
-                    <MenuItem value={5}>በክህነት</MenuItem>
-                </Select>
-                </FormControl>
-                    <TextField 
-                        className="personal-info-input"
-                        name="churchFatherName"
-                        label="የንስሐ አባት ስም"
-                        variant="standard"
-                    />
-
-
-                    <FormControl className="formcontrol"  >
-                    <InputLabel id="demo-simple-select-label">የተከታተሉት የመንፈሳዊ ት/ት</InputLabel>
-                    <Select
-
-                        
-                        value={cheducation}
-                        label="cheducation"
-                        onChange={cheducationChange}
-                    >
-                        <MenuItem value={1}>ቀዳማይ</MenuItem>
-                        <MenuItem value={2}>ሳልሳይ</MenuItem>
-                        <MenuItem value={3}>ካልዓይ</MenuItem>
-                        <MenuItem value={4}>ራብዓይ</MenuItem>
-                    </Select>
-                    </FormControl>
-                   
-                    <TextField 
-                        className="personal-info-input"
-                        name="churchFatherPhone"
-                        label="የንስሕ አባት ስ.ቁ"
-                        variant="standard"
-                        InputProps={{
-                            inputComponent: PhoneInput,
-                        }}
-                    />
-                     <FormControl className="formcontrol"  >
-                    <InputLabel id="demo-simple-select-label">በሌላ ሰ/ት/ቤት ያገለገሉበት ዘርፍ?</InputLabel>
-                    <Select
-
-                        
-                        value={otherchurch}
-                        label="otherchurch"
-                        onChange={otherchurchChange}
-                    >
-                        <MenuItem value={1}>አገልግዬ አላውቅም</MenuItem>
-                        <MenuItem value={2}>በአመራር</MenuItem>
-                        <MenuItem value={3}>በክህነት</MenuItem>
-                        <MenuItem value={4}>በአባልነት</MenuItem>   
-                    </Select>
-                    </FormControl>
-                   
-
+                   <hr/>
+                    <Typography variant="h5"> የመዝግብ መረጃ </Typography>
                     <TextField 
                         className="personal-info-input"
                         name="classrepName"
@@ -277,7 +294,7 @@ export default function Makelawian() {
 
                             />
                     
-                     <ProfilePictureUploader />
+                     
 
                      <Button variant="contained" color="primary" type="submit" style={{marginTop: 4 + 'em'}}>
                         ይህንን ቅጽ መዝግብ

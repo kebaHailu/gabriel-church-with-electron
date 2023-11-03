@@ -6,6 +6,9 @@
     --bg-primary: #23232e;
     --bg-secondary: #141418;
 }
+body {
+    background-color: rgb(3, 53, 53);
+}
 
 .navbar {
     width: 5rem;

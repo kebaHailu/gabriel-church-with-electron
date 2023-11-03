@@ -43,7 +43,7 @@ export default function Frewoch() {
  
     return (
         <div className="title">
-            <Typography variant='h4'>የፍሬ ሃይማኖት ሰንበት ትምህርት ቤት የፍሬ አባላት ቅጽ መሙያ</Typography>
+            <Typography variant='h4'>የፍሬዎች አባላት ቅጽ መሙያ</Typography>
        
            
             <form  id="wetatoch-form">
@@ -57,7 +57,7 @@ export default function Frewoch() {
                     }}
                     >
                     <Typography variant='h5' >ግላዊ መረጃ</Typography>
-                    
+                    <ProfilePictureUploader />
                     <TextField 
                         className="personal-info-input"
                         id = "fullName"
@@ -264,6 +264,8 @@ export default function Frewoch() {
                     </Select>
                     </FormControl>
                    
+                    <hr/>
+                    <Typography variant='h5' >የመዝግብ መረጃ</Typography>
 
                     <TextField 
                         className="personal-info-input"
@@ -277,7 +279,7 @@ export default function Frewoch() {
 
                             />
                     
-                     <ProfilePictureUploader />
+                     
 
                      <Button variant="contained" color="primary" type="submit" style={{marginTop: 4 + 'em'}}>
                         ይህንን ቅጽ መዝግብ
