@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import "./makelawian.css";
-import { Typography, Box, Grid, TextField } from "@mui/material";
-import Button from "@mui/material/Button";
-import { InputLabel, MenuItem, FormControl, Select } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
+import React, {useState} from "react";
+import "../wetatoch/styles.css";
+import {Typography,Box, Grid,TextField } from "@mui/material";
+import Button from '@mui/material/Button';
+import {InputLabel,MenuItem, FormControl,Select } from "@mui/material";
+import { DatePicker } from '@mui/x-date-pickers';
 import ProfilePictureUploader from "../ProfilePicture/ProfilePictureUploader";
 
 import InputMask from "react-input-mask";
