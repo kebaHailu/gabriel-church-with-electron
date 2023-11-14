@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
-import defaultpic from './../../Assets/Images/default.jpg'
-import { Button } from '@mui/material';
+import { Button } from "@mui/material";
+import defaultpic from "./../../Assets/Images/default.jpg";
+import { useState } from "react";
 
-const ProfilePictureUploader = () => {
+const ProfilePictureUploader = ({ section }) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
   };
-  const handlebuttonClick = (event) => {
-    document.getElementById("fileInput").click();
-  }
+
+  const handleButtonClick = () => {
+    document.getElementById(`fileInput-${section}`).click();
+  };
 
   return (
     <div>
-      
-      <Button onClick={handlebuttonClick}>ምስል ይምረጡ</Button>
-       
+      <Button onClick={handleButtonClick}>ምስል ይምረጡ</Button>
       <input
         type="file"
-        id="fileInput"
-        style={{ display: 'none' }}
+        id={`fileInput-${section}`}
+        style={{ display: "none" }}
         onChange={handleFileChange}
         onInput={handleFileChange}
       />
@@ -32,11 +31,7 @@ const ProfilePictureUploader = () => {
           style={{ width: 200, height: 200 }}
         />
       ) : (
-        <img
-          src={defaultpic}
-          alt=""
-          style={{ width: 200, height: 200 }}
-        />
+        <img src={defaultpic} alt="" style={{ width: 200, height: 200 }} />
       )}
     </div>
   );

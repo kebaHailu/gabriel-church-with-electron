@@ -16,11 +16,11 @@ hr {
   
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
-.personal-info , .church-info {
+.personal-info,.church-info {
   margin-top: 5px;
   display: flex;
   flex-direction: column;
-  width:630px;
+  width:40%;
   height:100%;
   align-items: center;
   border-radius: 10px;
