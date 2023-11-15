@@ -8,7 +8,6 @@ import ProfilePictureUploader from "../ProfilePicture/ProfilePictureUploader";
 
 import InputMask from "react-input-mask";
 import { useFormik } from "formik";
-import { basicSchema } from "../../indexx";
 import { Formik, Form, Field } from "formik";
 
 const PhoneInput = (props) => {
@@ -37,7 +36,6 @@ export default function Makelawian() {
         educationName: "",
         family:"",
       },
-      validationSchema: basicSchema,
       onSubmit: (value) => {},
     });
   function useInput(initialValue) {
@@ -304,6 +302,7 @@ export default function Makelawian() {
               className="personal-info-input"
               name="respondantName"
               label="የተጠሪ ስም"
+              required
               variant="standard"
             />
             <TextField

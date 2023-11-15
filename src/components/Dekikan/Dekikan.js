@@ -47,7 +47,8 @@ export default function Dekikan() {
       
         validateOnBlur: true,
         onSubmit: (values, {setSubmitting, event}) => {
-            
+            if (values.sex == "")
+            { alert("ፆታ ያስገቡ"); }
             console.log('submitting', values);
             setSubmitting(false);
 
@@ -171,6 +172,7 @@ export default function Dekikan() {
     name="respondantName"
     value={formik.values.respondantName}
     onChange={formik.handleChange}
+    required 
     label="የተጠሪ ሙሉ ስም"
     variant="standard"
 />
