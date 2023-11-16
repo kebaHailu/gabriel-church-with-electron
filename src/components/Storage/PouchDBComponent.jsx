@@ -26,16 +26,26 @@ class DBHandler{
             console.error('PouchDB is not initialized');
 
         }
-
-        };
-    return (
-        <div> 
-            <p>{pouchDB ? 'PouchDB loaded': 'PouchDB not loaded'}</p>
-            
-        </div>
-    )
-
+        
+    }
+    async allData(){
+        try {
+            const response = await this.db.allDocs(function(err,doc){
+                if(err){
+                    console.log(err)
+                }
+                else{
+                    console.log(doc.rows)
+                }
+            })
+            return response;
+        } catch (error) {
+            console.error('Error getting all documents: ',error);
+            throw error;
+        }
     }
 }
 
 export default DBHandler;
+
+
