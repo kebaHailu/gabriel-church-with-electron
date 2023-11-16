@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import PouchDB from 'pouchdb';
 import axios from 'axios'
+import { Formik } from 'formik';
+import Dekikan from '../Dekikan/Dekikan';
 
-
+<Dekikan/>
 const PouchDBComponent = () => {
     const [pouchDB, setPouchDB] = useState(null);
 
@@ -31,6 +33,7 @@ const PouchDBComponent = () => {
     return (
         <div> 
             <p>{pouchDB ? 'PouchDB loaded': 'PouchDB not loaded'}</p>
+            
             
         </div>
     )

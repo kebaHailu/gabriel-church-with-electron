@@ -20,50 +20,45 @@ const PhoneInput = (props) => {
 };
 
 export default function Wetatoch() {
+ 
+    const formik = useFormik({
+      initialValues: {
+        fullName: "",
+        churchName: "",
+        sex: "",
+        schoolcondition: "",
+        schoolname: "",
+        classrepName: "",
+        respondantName: "",
+        churchFatherName: "",
+        Birthdate: null,
+        churchName: "",
+        RespondentchurchName: "",
+        churchFatherPhone: "",
+        address: "",
+        houseNumber: "",
+        phone1: "",
+        phone2: "",
+        email: "",
+        respondantFamilyResponse: "",
+        occupation: "",
+        workPlace: "",
+        registration: null,
+      },
 
+      validateOnBlur: true,
+      onSubmit: (values, { setSubmitting, event }) => {
+        if (values.Birthdate == "") {
+          alert("please selelct date");
+        }
+        if (values.sex == "") {
+          alert("ፆታ ያስገቡ");
+        }
+        console.log("submitting", values);
 
- const formik = useFormik({
-   initialValues: {
-     fullName: "",
-     churchName: "",
-     sex: "",
-     schoolcondition: "",
-     schoolname: "",
-     classrepName: "",
-     respondantName: "",
-     churchFatherName: "",
-     Birthdate: null,
-     churchName: "",
-     RespondentchurchName: "",
-     churchFatherPhone: "",
-     address: "",
-     houseNumber: "",
-     phone1: "",
-     phone2: "",
-     email: "",
-     respondantFamilyResponse: "",
-     occupation: "",
-     workPlace: "",
-     registration: null,
-   },
-
-   validateOnBlur: true,
-   onSubmit: (values, { setSubmitting, event }) => {
-     if (values.Birthdate == "") {
-       alert("please selelct date");
-     }
-     if (values.sex == "") {
-       alert("ፆታ ያስገቡ");
-     }
-     console.log("submitting", values);
-
-     setSubmitting(false);
-   },
- });
-
-
-
-
+        setSubmitting(false);
+      },
+    });
 
   function useInput(initialValue) {
     const [state, setState] = useState(initialValue);
@@ -97,15 +92,21 @@ export default function Wetatoch() {
               id="fullName"
               name="fullName"
               label="ሙሉ ስም"
-              required={true}
+              required
               variant="standard"
               helperText="የሙሉ ስም ያስገቡ"
+              value={formik.values.fullName}
+              onChange={formik.handleChange}
             />
             <DatePicker label="የትውልድ ዘመን፡" />
 
             <FormControl className="formcontrol">
               <InputLabel id="sex">ፆታ</InputLabel>
-              <Select value={sex} label="sex" onChange={handleChange}>
+              <Select
+                value={formik.values.sex || ""}
+                label="sex"
+                onChange={formik.handleChange}
+              >
                 <MenuItem value={10}>ወንድ</MenuItem>
                 <MenuItem value={20}>ሴት</MenuItem>
               </Select>
@@ -116,6 +117,9 @@ export default function Wetatoch() {
               name="address"
               label="የመኖሪያ አድራሻ"
               variant="standard"
+              required
+              value={formik.values.address}
+              onChange={formik.handleChange}
             />
 
             <TextField
@@ -123,12 +127,18 @@ export default function Wetatoch() {
               name="houseNumber"
               label="የቤት ቁጥር"
               variant="standard"
+              required
+              value={formik.values.houseNumber}
+              onChange={formik.handleChange}
             />
             <TextField
               className="personal-info-input"
               name="phone1"
               label="የሞባይል ስልክ ቁጥር "
               variant="standard"
+              required
+              value={formik.values.phone1}
+              onChange={formik.handleChange}
               InputProps={{
                 inputComponent: PhoneInput,
               }}
@@ -138,6 +148,9 @@ export default function Wetatoch() {
               name="phone2"
               label="ተጨማሪ ስልክ ቁጥር "
               variant="standard"
+              required
+              value={formik.values.phone2}
+              onChange={formik.handleChange}
               InputProps={{
                 inputComponent: PhoneInput,
               }}
@@ -147,13 +160,18 @@ export default function Wetatoch() {
               name="email"
               label="ኢሜይል"
               variant="standard"
+              required
+              value={formik.values.email}
+              onChange={formik.handleChange}
             />
             <FormControl className="formcontrol">
               <InputLabel id="demo-simple-select-label">የትዳር ሁኔታ</InputLabel>
               <Select
-                value={marriage}
                 label="marriage"
-                onChange={marriageChange}
+                // onChange={marriageChange}
+                required
+                value={formik.values.marriage}
+                onChange={formik.handleChange}
               >
                 <MenuItem value={10}>ያገባ</MenuItem>
                 <MenuItem value={20}>ያላገባ</MenuItem>
@@ -164,13 +182,18 @@ export default function Wetatoch() {
               name="occupation"
               label="የሥራ ሁኔታ"
               variant="standard"
+              required
+              value={formik.values.occupation}
+              onChange={formik.handleChange}
             />
             <FormControl className="formcontrol">
               <InputLabel id="demo-simple-select-label">የት/ት ደረጃ</InputLabel>
               <Select
-                value={education}
                 label="education"
-                onChange={educationChange}
+                required
+                value={formik.values.education}
+                onChange={formik.handleChange}
+                // onChange={educationChange}
               >
                 <MenuItem value={1}>ፒኤችዲ</MenuItem>
                 <MenuItem value={2}>ማስተርስ</MenuItem>
@@ -185,12 +208,18 @@ export default function Wetatoch() {
               name="workPlace"
               label="የተሰማሩበት የሥራ ዘርፍ"
               variant="standard"
+              required
+              value={formik.values.workPlace}
+              onChange={formik.handleChange}
             />
             <TextField
               className="personal-info-input"
               name="telegramUsername"
               label="የቴሌግራም ዩዘር ስም"
               variant="standard"
+              required
+              value={formik.values.telegramUsername}
+              onChange={formik.handleChange}
             />
 
             <TextField
@@ -199,6 +228,9 @@ export default function Wetatoch() {
               fullWidth
               multiline
               rows={4}
+              required
+              value={formik.values.family}
+              onChange={formik.handleChange}
               label="የቤተሰብ አባላት ከስልክ ቁጥር ጋር"
             />
           </Box>
@@ -217,14 +249,18 @@ export default function Wetatoch() {
               required
               label="የክርስትና ስም"
               variant="standard"
+              value={formik.values.churchName}
+              onChange={formik.handleChange}
             />
 
             <FormControl className="formcontrol">
               <InputLabel>የቤተክርስቲያን አገልግሎት</InputLabel>
               <Select
-                value={churchContrbution}
                 label="churchContrbution"
-                onChange={churchContrbutionChange}
+                required
+                // onChange={churchContrbutionChange}
+                value={formik.values.churchContrbution}
+                onChange={formik.handleChange}
               >
                 <MenuItem value={1}>ከበሮ መምታት</MenuItem>
                 <MenuItem value={2}>ዜማ መድረስ</MenuItem>
@@ -238,6 +274,9 @@ export default function Wetatoch() {
               name="churchFatherName"
               label="የንስሐ አባት ስም"
               variant="standard"
+              required
+              value={formik.values.churchFatherName}
+              onChange={formik.handleChange}
             />
 
             <FormControl className="formcontrol">
@@ -245,9 +284,11 @@ export default function Wetatoch() {
                 የተከታተሉት የመንፈሳዊ ት/ት
               </InputLabel>
               <Select
-                value={cheducation}
                 label="cheducation"
-                onChange={cheducationChange}
+                required
+                // onChange={cheducationChange}
+                value={formik.values.cheducation}
+                onChange={formik.handleChange}
               >
                 <MenuItem value={1}>ቀዳማይ</MenuItem>
                 <MenuItem value={2}>ሳልሳይ</MenuItem>
@@ -261,6 +302,9 @@ export default function Wetatoch() {
               name="churchFatherPhone"
               label="የንስሕ አባት ስ.ቁ"
               variant="standard"
+              required
+              value={formik.values.churchFatherPhone}
+              onChange={formik.handleChange}
               InputProps={{
                 inputComponent: PhoneInput,
               }}
@@ -270,9 +314,11 @@ export default function Wetatoch() {
                 በሌላ ሰ/ት/ቤት ያገለገሉበት ዘርፍ?
               </InputLabel>
               <Select
-                value={otherchurch}
                 label="otherchurch"
-                onChange={otherchurchChange}
+                required
+                value={formik.values.otherchurch}
+                onChange={formik.handleChange}
+                // onChange={otherchurchChange}
               >
                 <MenuItem value={1}>አገልግዬ አላውቅም</MenuItem>
                 <MenuItem value={2}>በአመራር</MenuItem>
@@ -289,6 +335,9 @@ export default function Wetatoch() {
               name="classrepName"
               label="የክፍሉ ተጠሪ ስም"
               variant="standard"
+              required
+              value={formik.values.classrepName}
+              onChange={formik.handleChange}
             />
             <DatePicker label="የተመዘገቡበት ቀን" />
 
