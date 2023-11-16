@@ -136,42 +136,43 @@ export default function Dekikan() {
             <hr />
             <Typography variant="h5">የመዝግብ መረጃ</Typography>
 
-            <TextField
-              className="personal-info-input"
-              name="classrepName"
-              label="የክፍሉ ተጠሪ ስም"
-              required
-              value={formik.values.classrepName}
-              onChange={formik.handleChange}
-              variant="standard"
-            />
-            <DatePicker
-              name="registration" // Make sure this matches the field name in Formik
-              label="የተመዘገቡበት ቀን"
-              value={formik.values.registration}
-              onChange={(date) => formik.setFieldValue("registration", date)} // Use setFieldValue to update Formik's state
-              variant="standard"
-            />
+                    <TextField 
+                        className="personal-info-input"
+                        name="classrepName"
+                        label="የክፍሉ ተጠሪ ስም"
+                        value = {formik.values.classrepName}
+                        onChange={formik.handleChange}
+                        variant="standard"
+                    />
+                        <DatePicker
+                            label="የተመዘገቡበት ቀን"
+                            value={formik.values.registerdate}
+                            onChange={(registerdate) => formik.setFieldValue('registerdate', registerdate)}
 
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              style={{ marginTop: 4 + "em" }}
-            >
-              ይህንን ቅጽ መዝግብ
-            </Button>
-          </Box>
-        </div>
 
-        <div className="church-info">
-          <Box
-            sx={{
-              "& .MuiTextField-root": { m: 1, width: "30ch" },
-            }}
-          >
-            <Typography variant="h5">የተጠሪ መረጃ</Typography>
-            <ProfilePictureUploader />
+                            />
+                    
+                     
+
+                     <Button variant="contained" color="primary" type="submit" style={{marginTop: 4 + 'em'}}>
+                        ይህንን ቅጽ መዝግብ
+                    </Button>
+                   
+                    </Box>
+                </div>
+                
+    
+        <div className = "church-info">
+           <Box 
+                    sx={{
+                        
+                        '& .MuiTextField-root': { m: 1, width: '30ch' },
+                        
+                    }}
+                    >
+                          <Typography variant="h5" >የተጠሪ መረጃ</Typography>
+                          <ProfilePictureUploader 
+/>
 
             <TextField
               className="personal-info-input"
