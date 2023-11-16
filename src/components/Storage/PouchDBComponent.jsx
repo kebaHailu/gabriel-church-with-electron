@@ -1,24 +1,22 @@
-import React, {useEffect} from 'react';
+import React, {useState,useEffect} from 'react';
 import PouchDB from 'pouchdb';
 import axios from 'axios'
-import { Formik } from 'formik';
+import { useFormik } from 'formik';
 import Dekikan from '../Dekikan/Dekikan';
 
-<Dekikan/>
-const PouchDBComponent = () => {
-    const [pouchDB, setPouchDB] = useState(null);
 
-    useEffect(() => {
-        const db = new PouchDB('localDB');
-        setPouchDB(db);
-    }, []);
+class DBHandler{
+    constructor(dbName){
+        this.db = new PouchDB(dbName);
 
-    const handleFormSubmit = async (formData) => {
-        if (pouchDB){
-            // Save to PouchDB 
-            await pouchDB.put({
+    }
+
+    async save(document){
+        const cleanData = {...document};
+        try {
+            const response = await this.db.put({
                 _id: new Date().toISOString(),
-                ...formData,
+                ...cleanData,
             });
 
             // Save to MongoDB
@@ -33,7 +31,6 @@ const PouchDBComponent = () => {
     return (
         <div> 
             <p>{pouchDB ? 'PouchDB loaded': 'PouchDB not loaded'}</p>
-            
             
         </div>
     )
