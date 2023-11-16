@@ -18,38 +18,23 @@ class DBHandler{
                 _id: new Date().toISOString(),
                 ...cleanData,
             });
-            this.db.allDocs(function(err,doc){
-                if(err){
-                    console.log(err)
-                }
-                else{
-                    console.log(doc.rows)
-                }
-            })
-            }
-         
-        
-        catch(error){
-            console.error('Error saving docuemnt: ',error);
-            throw error;
+
+            // Save to MongoDB
+            await axios.post('http://localhost:3000/api/v1/submissions', formData);
         }
-        
-    }
-    async allData(){
-        try {
-            const response = await this.db.allDocs(function(err,doc){
-                if(err){
-                    console.log(err)
-                }
-                else{
-                    console.log(doc.rows)
-                }
-            })
-            return response;
-        } catch (error) {
-            console.error('Error getting all documents: ',error);
-            throw error;
+        else{
+            console.error('PouchDB is not initialized');
+
         }
+
+        };
+    return (
+        <div> 
+            <p>{pouchDB ? 'PouchDB loaded': 'PouchDB not loaded'}</p>
+            
+        </div>
+    )
+
     }
 }
 
