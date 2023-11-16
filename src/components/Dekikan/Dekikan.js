@@ -155,7 +155,7 @@ export default function Dekikan() {
                 </div>
                 
     
-        <div className = "church-info">
+        <div className = "church-info">f
            <Box 
                     sx={{
                         
