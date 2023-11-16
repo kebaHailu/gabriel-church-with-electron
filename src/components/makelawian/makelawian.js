@@ -36,7 +36,7 @@ export default function Makelawian() {
     }
     const [sex, handleChange] = useInput('');
     const [marriage, marriageChange] = useInput('');
-    const [education, educationChange] = useInput('');
+    const [schoolcondition, schoolconditionChange] = useInput('');
     const [cheducation, cheducationChange] = useInput('');
     const [churchContrbution, churchContrbutionChange] = useInput('');
     const [otherchurch, otherchurchChange] = useInput('');
@@ -207,9 +207,9 @@ export default function Makelawian() {
                     <InputLabel id="demo-simple-select-label">የት/ት ደረጃ</InputLabel>
                     <Select
                         
-                        value={education}
-                        label="education"
-                        onChange={educationChange}
+                        value={schoolcondition}
+                        label="schoolcondition"
+                        onChange={schoolconditionChange}
                     >
                         <MenuItem value={4}>ዲፕሎማ</MenuItem>
                         <MenuItem value={4}>መሰናዶ</MenuItem>
@@ -219,7 +219,7 @@ export default function Makelawian() {
                     </FormControl>
                     <TextField 
                         className="personal-info-input"
-                        name = "educationName"
+                        name = "schoolname"
                         label="የትምህርት ቤቱ ስም"
                         variant="standard"
                     />
