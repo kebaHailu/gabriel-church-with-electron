@@ -1,0 +1,28 @@
+
+.Mereja{
+ background-color: #242F3D;
+}
+
+.titlebar {
+ 
+  display: flex;
+  
+  
+  flex-shrink: none;
+  justify-content: space-between;
+  
+  color: white;
+  font-size: 1.5em;
+  width: 70%;
+
+
+}
+Button{
+  color: white !important;
+  border: none !important;
+  opacity: 0.75 !important;
+}
+Button:hover{
+background-color: #020203 !important;
+  opacity: 1 !important;
+}
