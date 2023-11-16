@@ -16,6 +16,7 @@
     "@uppy/core": "^3.7.1",
     "@uppy/react": "^3.2.1",
     "axios": "^1.6.1",
+    "date-fns": "^2.30.0",
     "dayjs": "^1.11.10",
     "formik": "^2.4.5",
     "pouchdb": "^8.0.1",

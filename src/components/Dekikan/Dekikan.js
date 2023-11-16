@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "../wetatoch/styles.css";
+import {format} from 'date-fns';
 import {Typography,Box, Grid,TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import {InputLabel,MenuItem, FormControl,Select } from "@mui/material";
@@ -32,7 +33,6 @@ export default function Dekikan() {
             classrepName: '',
             respondantName: '',
             churchFatherName: '',
-            Birthdate: '',
             churchName : '',
             RespondentchurchName : '',
             churchFatherPhone: '',
@@ -50,6 +50,7 @@ export default function Dekikan() {
         onSubmit: (values, {setSubmitting, event}) => {
             if (values.sex == "")
             { alert("ፆታ ያስገቡ"); }
+            console.log(values)
             const database = new DBHandler("Dekikan");
             database.save(values);
           
@@ -80,8 +81,10 @@ export default function Dekikan() {
               />
               <DatePicker
                 label="የትውልድ ዘመን፡"
-                value={formik.values.Birthdate}
-                onChange={(date) => formik.setFieldValue("Birthdate", date)}
+                value={formik.values.date}
+                onChange={(date) => { 
+                  const birthdate = toString(date);
+                  formik.setFieldValue("Birthdate", birthdate)}}
               />
 
               <TextField
@@ -144,7 +147,10 @@ export default function Dekikan() {
                         <DatePicker
                             label="የተመዘገቡበት ቀን"
                             value={formik.values.registerdate}
-                            onChange={(registerdate) => formik.setFieldValue('registerdate', registerdate)}
+                            onChange={(registerdate) => {
+                              const dateString = format(registerdate,'yyyy-MM-dd')
+                              alert(dateString);
+                              formik.setFieldValue('registerdate', dateString)}}
 
 
                             />
