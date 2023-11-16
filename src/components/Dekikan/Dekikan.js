@@ -46,7 +46,7 @@ export default function Dekikan() {
 
     validateOnBlur: true,
     onSubmit: (values, { setSubmitting, event }) => {
-      if (values.date == "") {
+      if (values.Birthdate == "") {
         alert("please selelct date");
       }
       if (values.sex == "") {
@@ -74,14 +74,14 @@ export default function Dekikan() {
               onChange={formik.handleChange}
               required
               variant="standard"
+             
             />
             <DatePicker
-              name="date"
+              name="Birthdate"
               label="የትውልድ ዘመን፡"
               required
-              value={formik.values.date}
-              onChange={(date) => formik.setFieldValue("date", date)}
-             
+              value={formik.values.Birthdate}
+              onChange={(date) => formik.setFieldValue("Birthdate", date)}
             />
 
             <TextField
@@ -91,7 +91,6 @@ export default function Dekikan() {
               onChange={formik.handleChange}
               label="የክርስትና ስም"
               required
-              
               variant="standard"
             />
 
