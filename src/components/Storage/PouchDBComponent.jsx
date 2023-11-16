@@ -18,13 +18,11 @@ class DBHandler{
                 _id: new Date().toISOString(),
                 ...cleanData,
             });
-
-            // Save to MongoDB
-            await axios.post('http://localhost:3000/api/v1/submissions', formData);
+            return response;
         }
-        else{
-            console.error('PouchDB is not initialized');
-
+        catch{
+            console.error('Error saving document: ', error);
+            throw error;
         }
         
     }
