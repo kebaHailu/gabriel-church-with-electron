@@ -18,28 +18,23 @@ class DBHandler{
                 _id: new Date().toISOString(),
                 ...cleanData,
             });
+            const alldatas = this.allData()
+            console.log(alldatas)
             return response;
         }
-        catch{
-            console.error('Error saving document: ', error);
-            throw error;
+        catch(err){
+            console.error('Error saving document: ', err);
+            throw err;
         }
         
     }
     async allData(){
         try {
-            const response = await this.db.allDocs(function(err,doc){
-                if(err){
-                    console.log(err)
-                }
-                else{
-                    console.log(doc.rows)
-                }
-            })
-            return response;
-        } catch (error) {
-            console.error('Error getting all documents: ',error);
-            throw error;
+            const response = await this.db.allDocs({ include_docs: true});
+            return response.rows;
+        } catch (err) {
+            console.error('Error getting all documents: ',err);
+            throw err;
         }
     }
 }
