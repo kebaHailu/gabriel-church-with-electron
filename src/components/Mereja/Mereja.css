@@ -28,12 +28,17 @@
 
 .row_posters {
 	display: flex;
+  padding-top: 0.7em;
 	overflow-y: hidden;
 	overflow-x: scroll;
    margin-left: 6%;
 }
 .row_posters th{
-  padding: 20px;
+  padding: 1.5em;
+  background-color: #2f4460;
+  color: white;
+  font-size: 1em;
+  white-space: nowrap;
  
 }
 
@@ -45,10 +50,12 @@
   background-color: #4D729F; /* or any other color */
 }
 .row_posters .long{
-  padding: 35px;
+  padding-left: 5em;
+  padding-right: 5em;
 }
 .row_posters .longs{
-  padding: 60px;
+  padding-left: 4em;
+  padding-right: 4em;
 }  
 
 .row_posters .th{

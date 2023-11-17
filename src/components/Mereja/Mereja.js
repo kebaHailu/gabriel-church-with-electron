@@ -20,7 +20,16 @@ function Mereja() {
     };
     fetchData();
   }, []);
-  
+
+  const handleDelete = async (id) => {
+    try {
+      await database.delete(id);
+      const fetchedData = await database.allData();
+      setData(fetchedData || []);
+    } catch (error) {
+      console.error("Error deleting document:", error);
+    }
+  };
   return (
     <div>
       <div className="Mereja">
@@ -36,25 +45,25 @@ function Mereja() {
         <table>
           <thead className="title-row">
             <tr>
-              <th className="longs">FullName</th>
-              <th className="longs">ChurchName</th>
-              <th>Sex</th>
-              <th>SchoolCondition</th>
-              <th className="longs">SchoolName</th>
-              <th>ClassRepresentativeName</th>
-              <th>RespondentName</th>
-              <th className="longs">ChurchFatherName</th>
+              <th className="longs">ሙሉ ስም</th>
+              <th className="longs">የክርስትና ስም</th>
+              <th> ፆታ</th>
+              <th>የት/ት ደረጃ</th>
+              <th className="longs">የትምህርት ቤቱ ስም</th>
+              <th>የክፍሉ ተጠሪ ስም</th>
+              <th>የተጠሪ ሙሉ ስም</th>
+              <th className="longs">Church Father Name</th>
               <th>Birthdate</th>
-              <th>RespondentChurchName</th>
-              <th className="long">ChurchFatherPhone</th>
+              <th>Respondent Church Name</th>
+              <th className="long">Church Father Phone</th>
               <th className="longs">Address</th>
-              <th>HouseNumber</th>
-              <th className="long">Phone1</th>
-              <th className="long">Phone2</th>
+              <th>House Number</th>
+              <th className="long">Phone 1</th>
+              <th className="long">Phone 2</th>
               <th className="longs">Email</th>
-              <th className="long">RespondentFamilyResponse</th>
+              <th className="long">Respondent Family Response</th>
               <th>Occupation</th>
-              <th>WorkPlace</th>
+              <th>Work Place</th>
             </tr>
           </thead>
           <tbody>
@@ -83,7 +92,12 @@ function Mereja() {
                 <td>{row.doc.occupation || "N/A"}</td>
                 <td>{row.doc.workPlace || "N/A"}</td>
                 <td>
-                  <button className="editors">Delete</button>
+                  <button
+                    className="editors"
+                    onClick={() => handleDelete(row.doc._id)}
+                  >
+                    Delete
+                  </button>
                 </td>
                 <td>
                   <button className="editors">Save</button>
