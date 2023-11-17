@@ -5,19 +5,17 @@
   left: 0;
   right: 0;
 }
-
 .titlebar {
    
   display: flex;
-
-  flex-shrink: none;
+   flex-shrink: none;
   justify-content: space-between;
 
   color: white;
   font-size: 1.5em;
   width: 70%;
 }
-.Mereja Button {
+.Mereja button {
   color: white !important;
   border: none !important;
   opacity: 0.75 !important;
@@ -26,18 +24,55 @@
   background-color: #020203 !important;
   opacity: 1 !important;
 }
-.tables{
-     position:fixed;
-  top:0;
-  left: 0;
-  right: 0;
-    margin-top:35px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-left: 6%;
-  color: white;
-  font-size: 14px;
-  background-color: #2d2d35 !important;
+
+
+.row_posters {
+	display: flex;
+	overflow-y: hidden;
+	overflow-x: scroll;
+   margin-left: 6%;
 }
+.row_posters th{
+  padding: 20px;
+ 
+}
+
+.row-even {
+  background-color: #B8C8F0; /* or any other color */
+}
+
+.row-odd {
+  background-color: #4D729F; /* or any other color */
+}
+.row_posters .long{
+  padding: 35px;
+}
+.row_posters .longs{
+  padding: 60px;
+}  
+
+.row_posters .th{
+
+  
+  padding-top: 0;
+  background-color: #fff;
+  padding-bottom: 0;
+}
+.row_posters::-webkit-scrollbar {
+	display: none;
+}
+.title-row{
+  background-color:#767f8a !important;
+ padding: 0 !important;
+
+
+
+}
+.editors{
+  background-color:#10b5be !important;
+ 
+  border-radius: 2px;
+  border: none;
+}
+
+
