@@ -1,14 +1,19 @@
 import React, {useState,useEffect} from 'react';
 import PouchDB from 'pouchdb';
-import axios from 'axios'
-import { useFormik } from 'formik';
-import Dekikan from '../Dekikan/Dekikan';
+import PouchdbFind from 'pouchdb-find';
+import PouchdbUpsert from 'pouchdb-upsert';
+
+PouchDB.plugin(PouchdbFind);
+PouchDB.plugin(PouchdbUpsert);
+const remoteDB = 'http://localhost:3001/pouchdb/remote_db_name'
+
+
 
 
 class DBHandler{
     constructor(dbName){
         this.db = new PouchDB(dbName);
-
+      
     }
 
     async save(document){
@@ -48,6 +53,43 @@ class DBHandler{
             throw err;
         }
     }
+    async delete(document){
+        try {
+            const response = await this.db.remove(document);
+            return response;
+        } catch (err) {
+            console.error('Error deleting document: ',err);
+            throw err;
+        }
+    }
+    async update(document){
+        try {
+            const response = await this.db.put(document);
+            return response;
+        } catch (err) {
+            console.error('Error updating document: ',err);
+            throw err;
+        }
+    }
+    async get(id){
+        try {
+            const response = await this.db.get(id);
+            return response;
+        } catch (err) {
+            console.error('Error getting document: ',err);
+            throw err;
+        }
+    }
+    async syncronize(){
+        try {
+            const response = await this.db.sync(remoteDB);
+            return response;
+        } catch (err) {
+            console.error('Error syncronizing document: ',err);
+            throw err;
+        }
+    }
+
 }
 
 export default DBHandler;

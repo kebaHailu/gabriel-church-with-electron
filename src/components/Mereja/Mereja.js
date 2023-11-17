@@ -11,7 +11,6 @@ function Mereja() {
     const fetchData = async () => {
       try {
         const fetchedData = await database.allData();
-        console.log(fetchedData)
         setData(fetchedData || []);
 
       }
