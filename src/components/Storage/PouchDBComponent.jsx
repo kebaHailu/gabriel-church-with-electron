@@ -37,8 +37,17 @@ class DBHandler{
             throw err;
         }
     }
-
-    
+    async deleteAll(){
+        try {
+            const response = await this.db.allDocs({ include_docs: true});
+            response.rows.forEach(async (row) => {
+                await this.db.remove(row.doc);
+            });
+        } catch (err) {
+            console.error('Error deleting all documents: ',err);
+            throw err;
+        }
+    }
 }
 
 export default DBHandler;

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "../wetatoch/styles.css";
+import {format} from 'date-fns';
 import {Typography,Box, Grid,TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import {InputLabel,MenuItem, FormControl,Select } from "@mui/material";
@@ -8,6 +9,7 @@ import ProfilePictureUploader from "../ProfilePicture/ProfilePictureUploader";
 import InputMask from 'react-input-mask';
 import {Form,Formik,ErrorMessage, useFormik ,Field} from 'formik';
 import DBHandler from "../Storage/PouchDBComponent";
+import moment from "moment/moment";
 
 
 const PhoneInput = (props) => {
@@ -32,7 +34,6 @@ export default function Dekikan() {
             classrepName: '',
             respondantName: '',
             churchFatherName: '',
-            Birthdate: '',
             churchName : '',
             RespondentchurchName : '',
             churchFatherPhone: '',
@@ -50,6 +51,7 @@ export default function Dekikan() {
         onSubmit: (values, {setSubmitting, event}) => {
             if (values.sex == "")
             { alert("ፆታ ያስገቡ"); }
+            console.log(values)
             const database = new DBHandler("Dekikan");
             database.save(values);
           
@@ -79,10 +81,13 @@ export default function Dekikan() {
                 helperText="የሙሉ ስም ያስገቡ"
               />
               <DatePicker
-                label="የትውልድ ዘመን፡"
-                value={formik.values.Birthdate}
-                onChange={(date) => formik.setFieldValue("Birthdate", date)}
+                label="የትውልድ ዘመን"
+                value={formik.values.date || null}
+                onChange={(date) => { 
+                  const birthdate = date ? date.format('YYYY-MM-DD'): '';
+                  formik.setFieldValue("Birthdate", birthdate)}}
               />
+              
 
               <TextField
                 className="personal-info-input"
@@ -143,8 +148,11 @@ export default function Dekikan() {
                     />
                         <DatePicker
                             label="የተመዘገቡበት ቀን"
-                            value={formik.values.registerdate}
-                            onChange={(registerdate) => formik.setFieldValue('registerdate', registerdate)}
+                            value={formik.values.registerdate || null}
+                            onChange={(registerdate) => {
+                              const rdate = registerdate ? registerdate.format('YYYY-MM-DD') : '';
+                              formik.setFieldValue('registerdate', rdate);
+                            }}
 
 
                             />
