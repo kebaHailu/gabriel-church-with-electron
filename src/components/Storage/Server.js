@@ -3,7 +3,7 @@ const pouchdbExpress = require('express-pouchdb');
 const mongoose = require('mongoose');
 
 const app = express();
-const port = 3001;
+const port = 3000;
 
 // MongoDB connection
 mongoose.connect('mongodb://localhost:27017/your_database_name', {
