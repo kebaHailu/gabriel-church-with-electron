@@ -9,6 +9,7 @@ import ProfilePictureUploader from "../ProfilePicture/ProfilePictureUploader";
 import InputMask from 'react-input-mask';
 import {Form,Formik,ErrorMessage, useFormik ,Field} from 'formik';
 import DBHandler from "../Storage/PouchDBComponent";
+import moment from "moment/moment";
 
 
 const PhoneInput = (props) => {
@@ -80,12 +81,13 @@ export default function Dekikan() {
                 helperText="የሙሉ ስም ያስገቡ"
               />
               <DatePicker
-                label="የትውልድ ዘመን፡"
-                value={formik.values.date}
+                label="የትውልድ ዘመን"
+                value={formik.values.date || null}
                 onChange={(date) => { 
-                  const birthdate = toString(date);
+                  const birthdate = date ? date.format('YYYY-MM-DD'): '';
                   formik.setFieldValue("Birthdate", birthdate)}}
               />
+              
 
               <TextField
                 className="personal-info-input"
@@ -146,11 +148,11 @@ export default function Dekikan() {
                     />
                         <DatePicker
                             label="የተመዘገቡበት ቀን"
-                            value={formik.values.registerdate}
+                            value={formik.values.registerdate || null}
                             onChange={(registerdate) => {
-                              const dateString = format(registerdate,'yyyy-MM-dd')
-                              alert(dateString);
-                              formik.setFieldValue('registerdate', dateString)}}
+                              const rdate = registerdate ? registerdate.format('YYYY-MM-DD') : '';
+                              formik.setFieldValue('registerdate', rdate);
+                            }}
 
 
                             />
