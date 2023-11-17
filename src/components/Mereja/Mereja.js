@@ -20,6 +20,7 @@ function Mereja() {
     };
     fetchData();
   }, []);
+  
   return (
     <div>
       <div className="Mereja">
@@ -31,34 +32,37 @@ function Mereja() {
         </ButtonGroup>
       </div>
 
-      <div className="tables" style={{ fontSize: ".9em" }}>
+      <div className="row_posters" style={{ fontSize: ".9em" }}>
         <table>
-          <thead>
+          <thead className="title-row">
             <tr>
-              <th>Full Name</th>
-              <th>Church Name</th>
+              <th className="longs">FullName</th>
+              <th className="longs">ChurchName</th>
               <th>Sex</th>
-              <th>School Condition</th>
-              <th>School Name</th>
-              <th>Class Representative Name</th>
-              <th>Respondent Name</th>
-              <th>Church Father Name</th>
+              <th>SchoolCondition</th>
+              <th className="longs">SchoolName</th>
+              <th>ClassRepresentativeName</th>
+              <th>RespondentName</th>
+              <th className="longs">ChurchFatherName</th>
               <th>Birthdate</th>
-              <th>Respondent Church Name</th>
-              <th>Church Father Phone</th>
-              <th>Address</th>
-              <th>House Number</th>
-              <th>Phone 1</th>
-              <th>Phone 2</th>
-              <th>Email</th>
-              <th>Respondent Family Response</th>
+              <th>RespondentChurchName</th>
+              <th className="long">ChurchFatherPhone</th>
+              <th className="longs">Address</th>
+              <th>HouseNumber</th>
+              <th className="long">Phone1</th>
+              <th className="long">Phone2</th>
+              <th className="longs">Email</th>
+              <th className="long">RespondentFamilyResponse</th>
               <th>Occupation</th>
-              <th>Work Place</th>
+              <th>WorkPlace</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((row) => (
-              <tr key={row.doc._id}>
+            {data.map((row, index) => (
+              <tr
+                key={row.doc._id}
+                className={index % 2 === 0 ? "row-even" : "row-odd"}
+              >
                 <td>{row.doc.fullName || "N/A"}</td>
                 <td>{row.doc.churchName || "N/A"}</td>
                 <td>{row.doc.sex || "N/A"}</td>
@@ -78,6 +82,12 @@ function Mereja() {
                 <td>{row.doc.respondantFamilyResponse || "N/A"}</td>
                 <td>{row.doc.occupation || "N/A"}</td>
                 <td>{row.doc.workPlace || "N/A"}</td>
+                <td>
+                  <button className="editors">Delete</button>
+                </td>
+                <td>
+                  <button className="editors">Save</button>
+                </td>
               </tr>
             ))}
           </tbody>

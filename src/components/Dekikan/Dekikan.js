@@ -9,7 +9,6 @@ import ProfilePictureUploader from "../ProfilePicture/ProfilePictureUploader";
 import InputMask from 'react-input-mask';
 import {Form,Formik,ErrorMessage, useFormik ,Field} from 'formik';
 import DBHandler from "../Storage/PouchDBComponent";
-import moment from "moment/moment";
 
 
 const PhoneInput = (props) => {
