@@ -17,12 +17,12 @@
   font-size: 1.5em;
   width: 70%;
 }
-Button {
+.Mereja Button {
   color: white !important;
   border: none !important;
   opacity: 0.75 !important;
 }
-Button:hover {
+.Mereja Button:hover {
   background-color: #020203 !important;
   opacity: 1 !important;
 }
