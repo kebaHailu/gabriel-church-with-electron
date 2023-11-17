@@ -21,7 +21,6 @@ function Mereja() {
     };
     fetchData();
   }, []);
-  
   return (
     <div>
       <div className="Mereja">
