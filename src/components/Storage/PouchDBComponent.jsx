@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import PouchDB from 'pouchdb';
-import PouchdbFind from 'pouchdb-find';
-import PouchdbUpsert from 'pouchdb-upsert';
+import PouchdbAdapterHttp from 'pouchdb-adapter-http';
 
 PouchDB.plugin(PouchdbFind);
 PouchDB.plugin(PouchdbUpsert);
