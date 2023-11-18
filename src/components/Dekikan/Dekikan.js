@@ -9,6 +9,7 @@ import ProfilePictureUploader from "../ProfilePicture/ProfilePictureUploader";
 import InputMask from 'react-input-mask';
 import {Form,Formik,ErrorMessage, useFormik ,Field} from 'formik';
 import DBHandler from "../Storage/PouchDBComponent";
+import Database from "../Storage/firebase";
 
 
 const PhoneInput = (props) => {
@@ -52,8 +53,9 @@ export default function Dekikan() {
             { alert("ፆታ ያስገቡ"); }
             console.log(values)
             const database = new DBHandler("Dekikan");
+            const data = new Database();
+            console.log(data.getData(values));
             database.save(values);
-          
             
             setSubmitting(false);
 

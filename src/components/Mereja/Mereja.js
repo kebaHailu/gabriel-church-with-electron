@@ -3,7 +3,8 @@ import Button from "@mui/material/Button";
 import { ButtonGroup } from '@mui/material';
 import "./Mereja.css"
 import DBHandler from '../Storage/PouchDBComponent';
-import { fontSize } from '@mui/system';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 function Mereja() {
   const [data,setData]= useState([]);
   const database = new DBHandler("Dekikan")
@@ -45,23 +46,23 @@ function Mereja() {
         <table>
           <thead className="title-row">
             <tr>
-              <th className="longs">ሙሉ ስም</th>
-              <th className="longs">የክርስትና ስም</th>
+              <th className="s-2">ሙሉ ስም</th>
+              <th className="s-3">የክርስትና ስም</th>
               <th> ፆታ</th>
               <th>የት/ት ደረጃ</th>
-              <th className="longs">የትምህርት ቤቱ ስም</th>
+              <th >የትምህርት ቤቱ ስም</th>
               <th>የክፍሉ ተጠሪ ስም</th>
-              <th>የተጠሪ ሙሉ ስም</th>
-              <th className="longs">Church Father Name</th>
+              <th className='s-3'>የተጠሪ ሙሉ ስም</th>
+              <th >Church Father Name</th>
               <th>Birthdate</th>
               <th>Respondent Church Name</th>
-              <th className="long">Church Father Phone</th>
-              <th className="longs">Address</th>
-              <th>House Number</th>
-              <th className="long">Phone 1</th>
-              <th className="long">Phone 2</th>
-              <th className="longs">Email</th>
-              <th className="long">Respondent Family Response</th>
+              <th>Church Father Phone</th>
+              <th className="s-1">Address</th>
+              <th className='s-4'>House Number</th>
+              <th className="s-3">Phone 1</th>
+              <th className="s-3">Phone 2</th>
+              <th className="s-1">Email</th>
+              <th className='s-4'>Respondent Family Response</th>
               <th>Occupation</th>
               <th>Work Place</th>
             </tr>
@@ -92,16 +93,14 @@ function Mereja() {
                 <td>{row.doc.occupation || "N/A"}</td>
                 <td>{row.doc.workPlace || "N/A"}</td>
                 <td>
-                  <button
-                    className="editors"
-                    onClick={() => handleDelete(row.doc._id)}
-                  >
-                    Delete
-                  </button>
+
+
+                <IconButton aria-label="delete" onClick={() => handleDelete(row.doc._id)}>
+                  <DeleteIcon fontSize="inherit" />
+                
+                    </IconButton>
                 </td>
-                <td>
-                  <button className="editors">Save</button>
-                </td>
+                
               </tr>
             ))}
           </tbody>

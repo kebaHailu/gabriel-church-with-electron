@@ -1,11 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import PouchDB from 'pouchdb';
-import PouchdbAdapterHttp from 'pouchdb-adapter-http';
-
-PouchDB.plugin(PouchdbFind);
-PouchDB.plugin(PouchdbUpsert);
-const remoteDB = 'http://localhost:3001/pouchdb/remote_db_name'
-
+import Database from './firebase';
 
 
 
@@ -77,15 +72,15 @@ class DBHandler {
       throw err;
     }
   }
-  async syncronize() {
-    try {
-      const response = await this.db.sync(remoteDB);
-      return response;
-    } catch (err) {
-      console.error("Error syncronizing document: ", err);
-      throw err;
-    }
-  }
+  // async sync() {
+  //   const db = firebase.firestore();
+  //   pouchdbReplicate.create(this.db, db, {
+  //     live: true,
+  //     retry: true,
+  //     backoff: true,
+  //     batches: 100
+  //   });
+  // }
 }
 
 export default DBHandler;

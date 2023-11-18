@@ -49,18 +49,26 @@
 .row-odd {
   background-color: #4D729F; /* or any other color */
 }
-.row_posters .long{
+.row_posters .s-1{
   padding-left: 5em;
   padding-right: 5em;
 }
-.row_posters .longs{
+.row_posters .s-2{
   padding-left: 4em;
   padding-right: 4em;
 }  
+.row_posters .s-3{
+  padding-left: 3em;
+  padding-right: 3em;
+}
+.row_posters .s-4{
+  padding-left: 1em;
+  padding-right: 1em;
+}  
+
+
 
 .row_posters .th{
-
-  
   padding-top: 0;
   background-color: #fff;
   padding-bottom: 0;
