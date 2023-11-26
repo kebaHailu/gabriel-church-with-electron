@@ -5,18 +5,29 @@
   left: 0;
   right: 0;
 }
+.st {
+  color: white;
+  background-color: #4D729F;
+  font-size: 1.5em;
+  position: fixed;
+  top: 0;
+  margin: 0;
+  padding: 0.1em;
+}
 .titlebar {
-   
+  padding: 1.5px;
   display: flex;
-   flex-shrink: none;
-  justify-content: space-between;
+  justify-content:center;
+  flex-direction: column;
+
+  width: 50%;
 
   color: white;
   font-size: 1.5em;
-  width: 70%;
 }
 .Mereja button {
   color: white !important;
+  width: 50%;
   border: none !important;
   opacity: 0.75 !important;
 }
@@ -28,13 +39,13 @@
 
 .row_posters {
 	display: flex;
-  padding-top: 0.7em;
 	overflow-y: hidden;
 	overflow-x: scroll;
    margin-left: 6%;
+   font-size: ".9em";
 }
 .row_posters th{
-  padding: 1.5em;
+  padding: .6em;
   background-color: #2f4460;
   color: white;
   font-size: 1em;
@@ -43,11 +54,11 @@
 }
 
 .row-even {
-  background-color: #B8C8F0; /* or any other color */
+  background-color: #B8C8F0; 
 }
 
 .row-odd {
-  background-color: #4D729F; /* or any other color */
+  background-color: #4D729F; 
 }
 .row_posters .s-1{
   padding-left: 5em;
@@ -70,15 +81,15 @@
 
 .row_posters .th{
   padding-top: 0;
-  background-color: #fff;
+  background-color: #cac2c2;
   padding-bottom: 0;
 }
 .row_posters::-webkit-scrollbar {
 	display: none;
 }
 .title-row{
-  background-color:#767f8a !important;
- padding: 0 !important;
+  background-color:#767f8a ;
+  padding-top: 2em;
 
 
 

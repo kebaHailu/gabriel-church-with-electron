@@ -23,6 +23,7 @@
     "firebase": "^10.6.0",
     "firebase-admin": "^11.11.0",
     "formik": "^2.4.5",
+    "material-ui-popup-state": "^5.0.10",
     "moment": "^2.29.4",
     "mongoose": "^8.0.1",
     "pouchdb": "^8.0.1",

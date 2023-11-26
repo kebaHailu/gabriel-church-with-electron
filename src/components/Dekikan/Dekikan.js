@@ -1,15 +1,13 @@
-import React, {useState} from "react";
+import React from "react";
 import "../wetatoch/styles.css";
-import {format} from 'date-fns';
 import {Typography,Box, Grid,TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import {InputLabel,MenuItem, FormControl,Select } from "@mui/material";
 import { DatePicker } from '@mui/x-date-pickers';
 import ProfilePictureUploader from "../ProfilePicture/ProfilePictureUploader";
 import InputMask from 'react-input-mask';
-import {Form,Formik,ErrorMessage, useFormik ,Field} from 'formik';
+import {useFormik } from 'formik';
 import DBHandler from "../Storage/PouchDBComponent";
-import Database from "../Storage/firebase";
 
 
 const PhoneInput = (props) => {
@@ -53,8 +51,6 @@ export default function Dekikan() {
             { alert("ፆታ ያስገቡ"); }
             console.log(values)
             const database = new DBHandler("Dekikan");
-            const data = new Database();
-            console.log(data.getData(values));
             database.save(values);
             
             setSubmitting(false);
@@ -80,7 +76,7 @@ export default function Dekikan() {
                 required
                 variant="standard"
                
-              />
+              /> 
               <DatePicker
                 label="የትውልድ ዘመን"
                 value={formik.values.date || null}
