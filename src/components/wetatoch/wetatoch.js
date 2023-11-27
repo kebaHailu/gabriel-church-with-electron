@@ -49,10 +49,14 @@ export default function Wetatoch() {
         validateOnBlur: true,
         onSubmit:(values, {setSubmitting, event}) => {
 
-            console.log(values)
+            if (!formik.values.date && !formik.values.sex && !formik.values.marriage && !formik.values.churchContrbution && !formik.values.cheducation && !formik.values.otherchurch && !formik.values.registerdate){
+                alert("እባክዎ ባዶ ቦታዎችን በመምረጥ መረጃዎችን ያስገቡ");
+            }
+            else{
             const database = new DBHandler('Wetatoch');
             database.save(values);
             setSubmitting(false);
+            }
 
         },
     });
@@ -106,6 +110,7 @@ export default function Wetatoch() {
                      <TextField 
                         className="personal-info-input"
                         name = "address"
+                        required
                         value={formik.values.address || ''}
                         onChange = {formik.handleChange}
                         label="የመኖሪያ አድራሻ"
@@ -115,6 +120,7 @@ export default function Wetatoch() {
                     <TextField 
                         className="personal-info-input"
                         name = "houseNumber"
+                        required
                         value={formik.values.houseNumber || ''}
                         onChange = {formik.handleChange}
                         label="የቤት ቁጥር"
@@ -123,6 +129,7 @@ export default function Wetatoch() {
                     <TextField 
                         className="personal-info-input"
                         name = "phone1"
+                        required
                         value={formik.values.phone1 || ''}
                         onChange = {formik.handleChange}
                         label="የሞባይል ስልክ ቁጥር "
@@ -145,6 +152,7 @@ export default function Wetatoch() {
                     <TextField 
                         className="personal-info-input"
                         name = "email"
+                        required
                         value={formik.values.email || ''}
                         onChange = {formik.handleChange}
                         label="ኢሜይል"
@@ -197,6 +205,7 @@ export default function Wetatoch() {
                     />
                     <TextField 
                         className="personal-info-input"
+                        required
                         value={formik.values.telegramUsername || ''}
                         onChange = {formik.handleChange}
                         name="telegramUsername"
@@ -206,6 +215,7 @@ export default function Wetatoch() {
                     
                      <TextField 
                         className="family"
+                        required
                         value={formik.values.family || ''}
                         onChange = {formik.handleChange}
                         name="family"
@@ -258,6 +268,7 @@ export default function Wetatoch() {
                     <TextField 
                         className="personal-info-input"
                         name="churchFatherName"
+                        required
                         value={formik.values.churchFatherName || ''}
                         onChange = {formik.handleChange}
                         label="የንስሐ አባት ስም"
@@ -315,6 +326,7 @@ export default function Wetatoch() {
 
                     <TextField 
                         className="personal-info-input"
+                        required
                         name="classrepName"
                         value={formik.values.classrepName || ''}
                         onChange = {formik.handleChange}

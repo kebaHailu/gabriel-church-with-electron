@@ -60,7 +60,8 @@ export default function Makelawian() {
         },
     validateOnBlur:true,
     onSubmit: (values, {setSubmitting,event}) => 
-    {
+    {   
+        
         const database = new DBHandler('Makelawian');
         database.save(values);
         setSubmitting(false);
@@ -83,7 +84,7 @@ export default function Makelawian() {
                         label="ሙሉ ስም"
                         value = {formik.values.fullName}
                         onChange = {formik.handleChange}
-                        required = {true}
+                        required
                         variant="standard"
                         helperText="የሙሉ ስም ያስገቡ"
                     />
