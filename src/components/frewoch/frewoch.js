@@ -7,6 +7,7 @@ import { DatePicker } from '@mui/x-date-pickers';
 import ProfilePictureUploader from "../ProfilePicture/ProfilePictureUploader";
 import InputMask from 'react-input-mask';
 import { useFormik } from 'formik';
+import DBHandler from "../Storage/PouchDBComponent";
 
 
 
@@ -27,35 +28,45 @@ const PhoneInput = (props) => {
 
 
 export default function Frewoch() {
-    function useInput(initialValue) {
-        const [state, setState] = useState(initialValue);
-        const handleChange = (event) => {
-            setState(event.target.value);   
-        };
-        return [state, handleChange];
-    }
-    const [sex, handleChange] = useInput('');
-    const [marriage, marriageChange] = useInput('');
-    const [education, educationChange] = useInput('');
-    const [cheducation, cheducationChange] = useInput('');
-    const [churchContrbution, churchContrbutionChange] = useInput('');
-    const [otherchurch, otherchurchChange] = useInput('');
+
+    const formik = useFormik({
+        initialValues: {
+            fullName: '',
+            address: '',
+            houseNumber: '',
+            phone1: '',
+            phone2: '',
+            email: '',
+            occupation: '',
+            workPlace: '',
+            telegramUsername: '',
+            family: '',
+            churchName: '',
+            churchFatherName: '',
+            churchFatherPhone: '',
+            classrepName: '',
+        },
+        validateOnBlur: true,
+        onSubmit:(values, {setSubmitting, event}) => {
+
+            console.log(values)
+            const database = new DBHandler('Frewoch');
+            database.save(values);
+            setSubmitting(false);
+
+        },
+    });
+
+
  
     return (
         <div className="title">
-            <Typography variant='h4'>የፍሬዎች አባላት ቅጽ መሙያ</Typography>
+            <Typography variant='h4'>የፍሬ አባላት ቅጽ መሙያ</Typography>
        
            
-            <form  id="wetatoch-form">
-
+            <form  id="wetatoch-form" onSubmit={formik.handleSubmit}>
                 <div className = "personal-info">
-                <Box 
-                    sx={{
-                        
-                        '& .MuiTextField-root': { m: 1, width: '30ch' },
-                        
-                    }}
-                    >
+                <Box sx={{'& .MuiTextField-root': { m: 1, width: '30ch' },}}>
                     <Typography variant='h5' >ግላዊ መረጃ</Typography>
                     <ProfilePictureUploader />
                     <TextField 
@@ -63,11 +74,18 @@ export default function Frewoch() {
                         id = "fullName"
                         name = "fullName"
                         label="ሙሉ ስም"
-                        required = {true}
+                        value = {formik.values.fullName}
+                        onChange={formik.handleChange}
+                        required
                         variant="standard"
                         helperText="የሙሉ ስም ያስገቡ"
                     />
                         <DatePicker
+                         value={formik.values.date || null}
+                         onChange={(date) => {
+                           const birthdate = date ? date.format("YYYY-MM-DD") : "";
+                           formik.setFieldValue("Birthdate", birthdate);
+                         }}
                             label="የትውልድ ዘመን፡"
                             />
                     
@@ -75,19 +93,21 @@ export default function Frewoch() {
                 <InputLabel id="sex">ፆታ</InputLabel>
                 <Select
                     
-                    value={sex}
-
+                    value={formik.values.sex || ''}
+                    onChange = {formik.handleChange}
+                    name = "sex"
                     label="sex"
-                    onChange={handleChange}
                 >
-                    <MenuItem value={10}>ወንድ</MenuItem>
-                    <MenuItem value={20}>ሴት</MenuItem>
+                    <MenuItem value={'ወንድ'}>ወንድ</MenuItem>
+                    <MenuItem value={'ሴት'}>ሴት</MenuItem>
                 </Select>
                 </FormControl>
 
                      <TextField 
                         className="personal-info-input"
                         name = "address"
+                        value={formik.values.address || ''}
+                        onChange = {formik.handleChange}
                         label="የመኖሪያ አድራሻ"
                         variant="standard"
                     />
@@ -95,12 +115,16 @@ export default function Frewoch() {
                     <TextField 
                         className="personal-info-input"
                         name = "houseNumber"
+                        value={formik.values.houseNumber || ''}
+                        onChange = {formik.handleChange}
                         label="የቤት ቁጥር"
                         variant="standard"
                     />
                     <TextField 
                         className="personal-info-input"
                         name = "phone1"
+                        value={formik.values.phone1 || ''}
+                        onChange = {formik.handleChange}
                         label="የሞባይል ስልክ ቁጥር "
                         variant="standard"
                         InputProps={{
@@ -110,6 +134,8 @@ export default function Frewoch() {
                     <TextField 
                         className="personal-info-input"
                         name = "phone2"
+                        value={formik.values.phone2 || ''}
+                        onChange = {formik.handleChange}
                         label="ተጨማሪ ስልክ ቁጥር "
                         variant="standard"
                         InputProps={{
@@ -119,6 +145,8 @@ export default function Frewoch() {
                     <TextField 
                         className="personal-info-input"
                         name = "email"
+                        value={formik.values.email || ''}
+                        onChange = {formik.handleChange}
                         label="ኢሜይል"
                         variant="standard"
                     />
@@ -126,16 +154,19 @@ export default function Frewoch() {
                     <InputLabel id="demo-simple-select-label">የትዳር ሁኔታ</InputLabel>
                     <Select
                         
-                        value={marriage}
+                        value={formik.values.marriage || ''}
+                        name="marriage"
                         label="marriage"
-                        onChange={marriageChange}
+                        onChange={formik.handleChange}
                     >
-                        <MenuItem value={10}>ያገባ</MenuItem>
-                        <MenuItem value={20}>ያላገባ</MenuItem>
+                        <MenuItem value={'ያገባ'}>ያገባ</MenuItem>
+                        <MenuItem value={'ያገባ'}>ያላገባ</MenuItem>
                     </Select>
                     </FormControl>
                      <TextField 
                         className="personal-info-input"
+                        value={formik.values.occupation || ''}
+                        onChange = {formik.handleChange}
                         name="occupation"
                         label="የሥራ ሁኔታ"
                         variant="standard"
@@ -143,27 +174,31 @@ export default function Frewoch() {
                     <FormControl className="formcontrol"  >
                     <InputLabel id="demo-simple-select-label">የት/ት ደረጃ</InputLabel>
                     <Select
-                        
-                        value={education}
+                        name = 'education'
+                        value={formik.values.education || ''}
                         label="education"
-                        onChange={educationChange}
+                        onChange={formik.handleChange}
                     >
-                        <MenuItem value={1}>ፒኤችዲ</MenuItem>
-                        <MenuItem value={2}>ማስተርስ</MenuItem>
-                        <MenuItem value={3}>ዲግሪ</MenuItem>
-                        <MenuItem value={4}>ዲፕሎማ</MenuItem>
-                        <MenuItem value={5}>2ኛ ደርጃ</MenuItem>
-                        <MenuItem value={6}>1ኛ ደርጃ</MenuItem>
+                        <MenuItem value={'ፒኤችዲ'}>ፒኤችዲ</MenuItem>
+                        <MenuItem value={'ማስተርስ'}>ማስተርስ</MenuItem>
+                        <MenuItem value={'ዲግሪ'}>ዲግሪ</MenuItem>
+                        <MenuItem value={'ዲፕሎማ'}>ዲፕሎማ</MenuItem>
+                        <MenuItem value={'2ኛ ደርጃ'}>2ኛ ደርጃ</MenuItem>
+                        <MenuItem value={'1ኛ ደርጃ'}>1ኛ ደርጃ</MenuItem>
                     </Select>
                     </FormControl>
                      <TextField 
                         className="personal-info-input"
+                        value={formik.values.workPlace || ''}
+                        onChange = {formik.handleChange}
                         name="workPlace"
                         label="የተሰማሩበት የሥራ ዘርፍ"
                         variant="standard"
                     />
                     <TextField 
                         className="personal-info-input"
+                        value={formik.values.telegramUsername || ''}
+                        onChange = {formik.handleChange}
                         name="telegramUsername"
                         label="የቴሌግራም ዩዘር ስም"
                         variant="standard"
@@ -171,6 +206,8 @@ export default function Frewoch() {
                     
                      <TextField 
                         className="family"
+                        value={formik.values.family || ''}
+                        onChange = {formik.handleChange}
                         name="family"
                         fullWidth
                         multiline
@@ -195,6 +232,8 @@ export default function Frewoch() {
                     <TextField 
                         className="personal-info-input"
                         name="churchName"
+                        value={formik.values.churchName || ''}
+                        onChange = {formik.handleChange}
                         required
                         label="የክርስትና ስም"
                         variant="standard"
@@ -204,20 +243,23 @@ export default function Frewoch() {
                 <InputLabel  >የቤተክርስቲያን አገልግሎት</InputLabel>
                 <Select
                     
-                    value={churchContrbution}
+                    value={formik.values.churchContrbution || ''}
+                    name="churchContrbution"
                     label="churchContrbution"
-                    onChange={churchContrbutionChange}
+                    onChange={formik.handleChange}
                 >
-                    <MenuItem value={1}>ከበሮ መምታት</MenuItem>
-                    <MenuItem value={2}>ዜማ መድረስ</MenuItem>
-                    <MenuItem value={3}>የዝማሬ መሣሪያዎች ችሎታ</MenuItem>
-                    <MenuItem value={4}>ሥነጽሁፍ ድርሰት</MenuItem>
-                    <MenuItem value={5}>በክህነት</MenuItem>
+                    <MenuItem value={'ከበሮ መምታት'}>ከበሮ መምታት</MenuItem>
+                    <MenuItem value={'ዜማ መድረስ'}>ዜማ መድረስ</MenuItem>
+                    <MenuItem value={'የዝማሬ መሣሪያዎች ችሎታ'}>የዝማሬ መሣሪያዎች ችሎታ</MenuItem>
+                    <MenuItem value={'ሥነጽሁፍ ድርሰት'}>ሥነጽሁፍ ድርሰት</MenuItem>
+                    <MenuItem value={'በክህነት'}>በክህነት</MenuItem>
                 </Select>
                 </FormControl>
                     <TextField 
                         className="personal-info-input"
                         name="churchFatherName"
+                        value={formik.values.churchFatherName || ''}
+                        onChange = {formik.handleChange}
                         label="የንስሐ አባት ስም"
                         variant="standard"
                     />
@@ -228,19 +270,22 @@ export default function Frewoch() {
                     <Select
 
                         
-                        value={cheducation}
+                        value={formik.values.cheducation || ''}
+                        name="cheducation"
                         label="cheducation"
-                        onChange={cheducationChange}
+                        onChange={formik.handleChange}
                     >
-                        <MenuItem value={1}>ቀዳማይ</MenuItem>
-                        <MenuItem value={2}>ሳልሳይ</MenuItem>
-                        <MenuItem value={3}>ካልዓይ</MenuItem>
-                        <MenuItem value={4}>ራብዓይ</MenuItem>
+                        <MenuItem value={'ቀዳማይ'}>ቀዳማይ</MenuItem>
+                        <MenuItem value={'ሳልሳይ'}>ሳልሳይ</MenuItem>
+                        <MenuItem value={'ካልዓይ'}>ካልዓይ</MenuItem>
+                        <MenuItem value={'ራብዓይ'}>ራብዓይ</MenuItem>
                     </Select>
                     </FormControl>
                    
                     <TextField 
                         className="personal-info-input"
+                        value={formik.values.churchFatherPhone || ''}
+                        onChange = {formik.handleChange}
                         name="churchFatherPhone"
                         label="የንስሕ አባት ስ.ቁ"
                         variant="standard"
@@ -253,14 +298,15 @@ export default function Frewoch() {
                     <Select
 
                         
-                        value={otherchurch}
+                        value={formik.values.otherchurch || ''}
+                        name="otherchurch"
                         label="otherchurch"
-                        onChange={otherchurchChange}
+                        onChange={formik.handleChange}
                     >
-                        <MenuItem value={1}>አገልግዬ አላውቅም</MenuItem>
-                        <MenuItem value={2}>በአመራር</MenuItem>
-                        <MenuItem value={3}>በክህነት</MenuItem>
-                        <MenuItem value={4}>በአባልነት</MenuItem>   
+                        <MenuItem value={'>አገልግዬ አላውቅም'}>አገልግዬ አላውቅም</MenuItem>
+                        <MenuItem value={'በአመራር'}>በአመራር</MenuItem>
+                        <MenuItem value={'በክህነት'}>በክህነት</MenuItem>
+                        <MenuItem value={'በአባልነት'}>በአባልነት</MenuItem>   
                     </Select>
                     </FormControl>
                    
@@ -270,12 +316,18 @@ export default function Frewoch() {
                     <TextField 
                         className="personal-info-input"
                         name="classrepName"
+                        value={formik.values.classrepName || ''}
+                        onChange = {formik.handleChange}
                         label="የክፍሉ ተጠሪ ስም"
                         variant="standard"
                     />
                         <DatePicker
                             label="የተመዘገቡበት ቀን"
-
+                            value={formik.values.registerdate || null}
+                            onChange={(registerdate) => {
+                              registerdate = registerdate ? registerdate.format("YYYY-MM-DD") : "";
+                              formik.setFieldValue("registerdate", registerdate);
+                            }}
 
                             />
                     
