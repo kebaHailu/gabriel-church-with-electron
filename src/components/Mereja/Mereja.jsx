@@ -97,10 +97,10 @@ function Mereja() {
        
         <ButtonGroup >
           
-          <Button>ፍሬዎች</Button>
-          <Button>ወጣቶች</Button>
-          <Button>ማእከላዊያን</Button>
-          <Button>ደቂቃን</Button>
+          <Button onClick={() => handleButtonClick('frewoch')}>ፍሬዎች</Button>
+          <Button onClick={() => handleButtonClick('wetatoch')}>ወጣቶች</Button>
+          <Button onClick={() => handleButtonClick('makelawian')}>ማእከላዊያን</Button>
+          <Button onClick={() => handleButtonClick('dekikan')}>ደቂቃን</Button>
         </ButtonGroup>
       
           </Popover>
@@ -126,10 +126,10 @@ function Mereja() {
        
         <ButtonGroup >
           
-          <Button>ፍሬዎች</Button>
-          <Button>ወጣቶች</Button>
-          <Button>ማእከላዊያን</Button>
-          <Button>ደቂቃን</Button>
+          <Button onClick={() => handleButtonClick('frewoch')}>ፍሬዎች</Button>
+          <Button onClick={() => handleButtonClick('wetatoch')}>ወጣቶች</Button>
+          <Button onClick={() => handleButtonClick('makelawian')}>ማእከላዊያን</Button>
+          <Button onClick={() => handleButtonClick('dekikan')}>ደቂቃን</Button>
         </ButtonGroup>
       
           </Popover>
@@ -155,10 +155,10 @@ function Mereja() {
        
         <ButtonGroup >
           
-          <Button>ፍሬዎች</Button>
-          <Button>ወጣቶች</Button>
-          <Button>ማእከላዊያን</Button>
-          <Button>ደቂቃን</Button>
+          <Button onClick={() => handleButtonClick('frewoch')}>ፍሬዎች</Button>
+          <Button onClick={() => handleButtonClick('wetatoch')}>ወጣቶች</Button>
+          <Button onClick={() => handleButtonClick('makelawian')}>ማእከላዊያን</Button>
+          <Button onClick={() => handleButtonClick('dekikan')}>ደቂቃን</Button>
         </ButtonGroup>
       
           </Popover>
