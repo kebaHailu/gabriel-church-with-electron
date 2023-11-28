@@ -29,6 +29,11 @@ const PhoneInput = (props) => {
 
 export default function Frewoch() {
 
+    const handleImageSelected = (imageFile) => {
+        formik.setFieldValue("ProfileImage", imageFile)
+
+    }
+
     const formik = useFormik({
         initialValues: {
             fullName: '',
@@ -58,8 +63,6 @@ export default function Frewoch() {
                 setSubmitting(false);
 
             }
-            
-
         },
     });
 
@@ -74,7 +77,11 @@ export default function Frewoch() {
                 <div className = "personal-info">
                 <Box sx={{'& .MuiTextField-root': { m: 1, width: '30ch' },}}>
                     <Typography variant='h5' >ግላዊ መረጃ</Typography>
-                    <ProfilePictureUploader />
+
+                    <ProfilePictureUploader 
+                    onImageSelected={handleImageSelected}
+                    />
+
                     <TextField 
                         className="personal-info-input"
                         id = "fullName"
@@ -316,7 +323,7 @@ export default function Frewoch() {
                         label="otherchurch"
                         onChange={formik.handleChange}
                     >
-                        <MenuItem value={'>አገልግዬ አላውቅም'}>አገልግዬ አላውቅም</MenuItem>
+                        <MenuItem value={'አገልግዬ አላውቅም'}>አገልግዬ አላውቅም</MenuItem>
                         <MenuItem value={'በአመራር'}>በአመራር</MenuItem>
                         <MenuItem value={'በክህነት'}>በክህነት</MenuItem>
                         <MenuItem value={'በአባልነት'}>በአባልነት</MenuItem>   

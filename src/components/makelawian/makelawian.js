@@ -28,6 +28,13 @@ const PhoneInput = (props) => {
 
 
 export default function Makelawian() {
+    const handleUserImageSelected = (imageFile) => {
+        formik.setFieldValue("ProfileImage",imageFile)
+    }
+    const handleRespondentImageSelected = (imageFile) => {
+        formik.setFieldValue("RespondentImage",imageFile)
+    }
+
     const formik = useFormik({
         initialValues: {
             fullName: '',
@@ -76,7 +83,9 @@ export default function Makelawian() {
                 <div className = "personal-info">
                 <Box sx={{'& .MuiTextField-root': { m: 1, width: '30ch' }, }}>
                     <Typography variant='h5' >የአባሉ መረጃ</Typography>
-                    <ProfilePictureUploader section="personal-info" />
+                    <ProfilePictureUploader 
+                    section="personal-info"
+                    onImageSelected={handleUserImageSelected} />
                     <TextField 
                         className="personal-info-input"
                         id = "fullName"
@@ -296,7 +305,9 @@ export default function Makelawian() {
 
 
                           <Typography variant="h5" >የተጠሪ መረጃ</Typography>
-                          <ProfilePictureUploader />
+                          <ProfilePictureUploader 
+                          onImageSelected={handleRespondentImageSelected}
+                          />
 
 <TextField 
     className="personal-info-input"

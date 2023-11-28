@@ -2,13 +2,19 @@ import { Button } from "@mui/material";
 import defaultpic from "./../../Assets/Images/default.jpg";
 import { useState } from "react";
 
-const ProfilePictureUploader = ({ section }) => {
+const ProfilePictureUploader = ({ section, onImageSelected }) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+
+  if (onImageSelected){
+    onImageSelected(file);
   };
+  
+  };
+
 
   const handleButtonClick = () => {
     document.getElementById(`fileInput-${section}`).click();

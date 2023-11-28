@@ -28,6 +28,10 @@ const PhoneInput = (props) => {
 
 
 export default function Wetatoch() {
+    const handleImageSelected = (imageFile) => {
+        formik.setFieldValue("ProfileImage",imageFile);
+
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -72,7 +76,11 @@ export default function Wetatoch() {
                 <div className = "personal-info">
                 <Box sx={{'& .MuiTextField-root': { m: 1, width: '30ch' },}}>
                     <Typography variant='h5' >ግላዊ መረጃ</Typography>
-                    <ProfilePictureUploader />
+
+                    <ProfilePictureUploader 
+                    onImageSelected = {handleImageSelected}
+                    />
+
                     <TextField 
                         className="personal-info-input"
                         id = "fullName"

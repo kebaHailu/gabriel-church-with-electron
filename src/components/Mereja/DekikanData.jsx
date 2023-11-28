@@ -37,12 +37,14 @@ function DekikanData() {
                 <table>
                     <thead className="title-row">
                         <tr>
+                            <th> ምስል </th>
                             <th className="s-2">ሙሉ ስም</th>
                             <th>የትውልድ ዝመን</th>
                             <th >የክርስትና ስም</th>
                             <th> ፆታ</th>
                             <th>የት/ት ደረጃ</th>
                             <th >የትምህርት ቤቱ ስም</th>
+                            <th >የተጠሪ ምስል</th>
                             <th >የተጠሪ ሙሉ ስም</th>
                             <th >የተጠሪ የንስሃ አባት</th>
                             <th>የተጠሪ የክርስትና ስም</th>
@@ -65,12 +67,14 @@ function DekikanData() {
                                 key={row.doc._id}
                                 className={index % 2 === 0 ? "row-even" : "row-odd"}
                             >
+                                <td>{row.doc.ProfileImage ? <img src={URL.createObjectURL(row.doc.ProfileImage)} alt="Profile" style={{ width: 100, height: 100 }} /> : "N/A"}</td>
                                 <td>{row.doc.fullName || "N/A"}</td>
                                 <td>{row.doc.Birthdate || "N/A"}</td>
                                 <td>{row.doc.churchName || "N/A"}</td>
                                 <td>{row.doc.sex || "N/A"}</td>
                                 <td>{row.doc.schoolcondition || "N/A"}</td>
                                 <td>{row.doc.schoolname || "N/A"}</td>
+                                <td>{row.doc.RespondentImage ? <img src={URL.createObjectURL(row.doc.RespondentImage)} alt="Respondent" style={{ width: 100, height: 100 }} /> : "N/A"}</td>
                                 <td>{row.doc.respondantName || "N/A"}</td>
                                 <td>{row.doc.churchFatherName || "N/A"}</td>
                                 <td>{row.doc.RespondentchurchName || "N/A"}</td>

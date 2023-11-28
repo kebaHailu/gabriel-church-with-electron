@@ -37,6 +37,7 @@ function FrewochData() {
                 <table>
                     <thead className="title-row">
                         <tr>
+                            <th> ምስል </th>
                             <th className="s-2">ሙሉ ስም</th>
                             <th>የትውልድ ዝመን</th>
                             <th >የክርስትና ስም</th>
@@ -66,8 +67,8 @@ function FrewochData() {
                         {data.map((row, index) => (
                             <tr
                                 key={row.doc._id}
-                                className={index % 2 === 0 ? "row-even" : "row-odd"}
-                            >
+                                className={index % 2 === 0 ? "row-even" : "row-odd"}>
+                              <td>{row.doc.ProfileImage ? <img src={URL.createObjectURL(row.doc.ProfileImage)} alt="Profile" style={{ width: 100, height: 100 }} /> : "N/A"}</td>
                                 <td>{row.doc.fullName || "N/A"}</td>
                                 <td>{row.doc.Birthdate || "N/A"}</td>
                                 <td>{row.doc.churchName || "N/A"}</td>
