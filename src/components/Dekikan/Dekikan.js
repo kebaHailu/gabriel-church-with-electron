@@ -22,6 +22,13 @@ const PhoneInput = (props) => {
   };
 export default function Dekikan() {
 
+  const handleUserImageSelected = (imageSelected) => {
+    formik.setFieldValue("ProfileImage",imageSelected)
+  }
+  const handleRespondentImageSelected = (imageSelected) => {
+    formik.setFieldValue("RespondentImage",imageSelected)
+  }
+
     const formik = useFormik({
         initialValues: {
             fullName: '',
@@ -65,7 +72,12 @@ export default function Dekikan() {
           <div className="personal-info">
             <Box sx={{ "& .MuiTextField-root": { m: 1, width: "30ch" } }}>
               <Typography variant="h5">የአባሉ መረጃ</Typography>
-              <ProfilePictureUploader section="personal-info" />
+
+              <ProfilePictureUploader 
+                section="personal-info"
+                onImageSelected = {handleUserImageSelected}
+                 />
+
               <TextField
                 className="personal-info-input"
                 id="fullName"
@@ -172,7 +184,9 @@ export default function Dekikan() {
               }}
             >
               <Typography variant="h5">የተጠሪ መረጃ</Typography>
-              <ProfilePictureUploader />
+              <ProfilePictureUploader
+                onImageSelected = {handleRespondentImageSelected} 
+               />
 
               <TextField
                 className="personal-info-input"

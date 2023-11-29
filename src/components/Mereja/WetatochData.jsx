@@ -37,24 +37,26 @@ function WetatochData() {
                 <table>
                     <thead className="title-row">
                         <tr>
+
+                            <th> ምስል </th>
                             <th className="s-2">ሙሉ ስም</th>
                             <th>የትውልድ ዝመን</th>
                             <th >የክርስትና ስም</th>
                             <th> ፆታ</th>
-                            <th >የመኖሪያ አድሪሻ</th>
+                            <th className='s-2'>የመኖሪያ አድሪሻ</th>
                             <th className='s-4'>የቤት ቁጥር</th>
                             <th className="s-3">ዋና ስልክ ቁጥር</th>
                             <th className="s-3">ተጨማሪ ስልክ ቁጥር</th>
                             <th className="s-1">ኢሜል</th>
                             <th>የትዳር ሁኔታ</th>
-                            <th>የስራ ሁኔታ</th>
+                            <th className='s-3'>የስራ ሁኔታ</th>
                             <th>የት/ት ደረጃ</th>
                             <th>የተሰማሩበት የስራ ዘርፍ</th>
                             <th >የቴሌግራም  ስም</th>
-                            <th >የቤተሰብ አባላት ከስልክ ቁጥር ጋር</th>
+                            <th className='s-1' >የቤተሰብ አባላት ከስልክ ቁጥር ጋር</th>
                             <th >የቤተክርስቲያን አገልግሎት</th>
                             <th >የንስሐ አባት ስም</th>
-                            <th>የንስሐ አባት ስ.ቁ</th>
+                            <th className='s-3'>የንስሐ አባት ስ.ቁ</th>
                             <th>የተከታተሉት የመንፈሳዊ ት/ት</th>
                             <th className='s-4'>በሌላ ሰ/ት/ቤት ያገለገሉበት ዘርፍ</th>
                             <th>የክፍሉ ተጠሪ ስም</th>
@@ -68,6 +70,8 @@ function WetatochData() {
                                 key={row.doc._id}
                                 className={index % 2 === 0 ? "row-even" : "row-odd"}
                             >
+
+                              <td>{row.doc.ProfileImage ? <img src={URL.createObjectURL(row.doc.ProfileImage)} alt="Profile" style={{ width: 100, height: 100 }} /> : "N/A"}</td>
                                 <td>{row.doc.fullName || "N/A"}</td>
                                 <td>{row.doc.Birthdate || "N/A"}</td>
                                 <td>{row.doc.churchName || "N/A"}</td>

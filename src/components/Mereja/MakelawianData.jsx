@@ -37,6 +37,7 @@ function MakelawianData() {
                 <table>
                     <thead className="title-row">
                         <tr>
+                            <th> ምስል </th>
                             <th className="s-2">ሙሉ ስም</th>
                             <th>የትውልድ ዝመን</th>
                             <th >የክርስትና ስም</th>
@@ -54,6 +55,7 @@ function MakelawianData() {
                             <th>የት/ት ደረጃ</th>
                             <th>የትምህርት ቤቱ ስም</th>
                             <th >የቤተሰብ አባላት ከስልክ ቁጥር ጋር</th>
+                            <th >የተጠሪ ምስል</th>
                             <th >የተጠሪ ስም</th>
                             <th >የተጠሪ የቤተሰብ ሃላፊነት</th>
                             <th >የተጠሪ የሥራ ሁኔታ</th>
@@ -69,8 +71,9 @@ function MakelawianData() {
                                 key={row.doc._id}
                                 className={index % 2 === 0 ? "row-even" : "row-odd"}
                             >
+                                 <td>{row.doc.ProfileImage ? <img src={URL.createObjectURL(row.doc.ProfileImage)} alt="Profile" style={{ width: 100, height: 100 }} /> : "N/A"}</td>
                                 <td>{row.doc.fullName || "N/A"}</td>
-                                <td>{row.doc.date || "N/A"}</td>
+                                <td>{row.doc.Birthdate || "N/A"}</td>
                                 <td>{row.doc.churchName || "N/A"}</td>
                                 <td>{row.doc.sex || "N/A"}</td>
                                 <td>{row.doc.churchFatherName || "N/A"}</td>
@@ -86,12 +89,13 @@ function MakelawianData() {
                                 <td>{row.doc.schoolcondition || "N/A"}</td>
                                 <td>{row.doc.schoolname || "N/A"}</td>
                                 <td>{row.doc.family || "N/A"}</td>
+                                <td>{row.doc.RespondentImage ? <img src={URL.createObjectURL(row.doc.RespondentImage)} alt="Respondent" style={{ width: 100, height: 100 }} /> : "N/A"}</td>
                                 <td>{row.doc.respondantName || "N/A"}</td>
                                 <td>{row.doc.respondantFamilyResponse || "N/A"}</td>
                                 <td>{row.doc.occupation || "N/A"}</td>
                                 <td>{row.doc.workPlace || "N/A"}</td>
                                 <td>{row.doc.classrepName || "N/A"}</td>
-                                <td>{row.doc.registerdate || "N/A"}</td>
+                                <td>{row.doc.registerDate || "N/A"}</td>
 
 
                                
