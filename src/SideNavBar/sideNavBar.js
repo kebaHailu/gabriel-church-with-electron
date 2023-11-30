@@ -7,6 +7,7 @@ import Frewoch from '../components/frewoch/frewoch';
 import Makelawian from '../components/makelawian/makelawian'
 import Mereja from '../components/Mereja/Mereja';
 import Statistics from '../components/Statistics/Statistics';
+import Home from '../components/Home/Home';
 const SideNavBar = () => {
     return (
       <Router>
@@ -90,7 +91,7 @@ const SideNavBar = () => {
         </div>
 
         <Routes>
-          <Route path="/" element={<Dekikan />} />
+          <Route path="/" element={<Home />} />
           <Route path="/wetatoch" element={<Wetatoch />} />
           <Route path="/frewoch" element={<Frewoch />} />
           <Route path="/makelawian" element={<Makelawian />} />
