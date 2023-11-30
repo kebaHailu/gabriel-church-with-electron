@@ -1,5 +1,6 @@
-import React, {useEffect,useState} from 'react'
+import React, {useEffect,useState,useMemo} from 'react'
 import IconButton from '@mui/material/IconButton';
+import {InputLabel,MenuItem, FormControl,Select } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import DBHandler from '../Storage/PouchDBComponent';
 import "./Mereja.css"
@@ -7,7 +8,9 @@ import "./Mereja.css"
 
 function DekikanData() {
     const [data,setData]= useState([]);
-  const database = new DBHandler("Dekikan")
+    const database = useMemo(() => {
+      return new DBHandler("Dekikan");
+    }, []);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,13 +23,25 @@ function DekikanData() {
       }
     };
     fetchData();
-  }, []);
+  }, [database]);
 
   const handleDelete = async (id) => {
+    
+    var enteredName = prompt("ይህን መረጃ ለመደምሰስ እርግጠኛ ከሆኑ የተማሪውን ሙሉ ስም ያስገቡ !");
+  
     try {
-      await database.delete(id);
-      const fetchedData = await database.allData();
-      setData(fetchedData || []);
+      
+      const document = await database.get(id);
+  
+    
+      if (enteredName === document.fullName) {
+        await database.delete(id);
+        const fetchedData = await database.allData();
+        setData(fetchedData || []);
+      } else {
+      
+        alert("ስም አልተመዘገበም ወይም በትክክል አልገባም ፡ እባኮትን እንደገና ማስጠንቀቅ ይሞክሩ።");
+      }
     } catch (error) {
       console.error("Error deleting document:", error);
     }
@@ -59,6 +74,7 @@ function DekikanData() {
                             <th>የተጠሪ የስራ ቦታ</th>
                             <th>የክፍሉ ተጠሪ ስም</th>
                             <th>የተመዘገበበት ቀን</th>
+                            <th className='s-2'>የአገልግሎት ክፍል</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,6 +105,21 @@ function DekikanData() {
                                 <td>{row.doc.workPlace || "N/A"}</td>
                                 <td>{row.doc.classrepName || "N/A"}</td>
                                 <td>{row.doc.registerdate || "N/A"}</td>
+                                <td>
+                                <FormControl className="formcontrol">
+                                <InputLabel >የአገልግሎት ክፍል ምረጥ</InputLabel>
+                                <Select
+                                  // value={formik.values.schoolcondition || ""}
+                                  name="schoolcondition"
+                                  label="schoolcondition"
+                                  // onChange={formik.handleChange}
+                                >
+                                  <MenuItem value={"መዝሙር ክፍል"}>መዝሙር ክፍል</MenuItem>
+                                  <MenuItem value={"ኪነ ጥበብ"}>ኪነ ጥበብ</MenuItem>
+                                  <MenuItem value={"ምግባረ ሰናይ"}>ምግባረ ሰናይ</MenuItem>
+                                </Select>
+                              </FormControl>
+                                </td>
                                 
                                 <td>
                                     <IconButton aria-label="delete" onClick={() => handleDelete(row.doc._id)}>

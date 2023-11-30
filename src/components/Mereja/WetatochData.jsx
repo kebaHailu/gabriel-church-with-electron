@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react'
+import React, {useEffect,useState, useMemo} from 'react'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DBHandler from '../Storage/PouchDBComponent';
@@ -7,7 +7,9 @@ import "./Mereja.css"
 
 function WetatochData() {
     const [data,setData]= useState([]);
-  const database = new DBHandler("Wetatoch")
+    const database = useMemo(() => {
+      return new DBHandler("Wetatoch");
+    }, []);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,17 +22,30 @@ function WetatochData() {
       }
     };
     fetchData();
-  }, []);
+  }, [database]);
 
   const handleDelete = async (id) => {
+    
+    var enteredName = prompt("ይህን መረጃ ለመደምሰስ እርግጠኛ ከሆኑ የተማሪውን ሙሉ ስም ያስገቡ !");
+  
     try {
-      await database.delete(id);
-      const fetchedData = await database.allData();
-      setData(fetchedData || []);
+      
+      const document = await database.get(id);
+  
+    
+      if (enteredName === document.fullName) {
+        await database.delete(id);
+        const fetchedData = await database.allData();
+        setData(fetchedData || []);
+      } else {
+      
+        alert("ስም አልተመዘገበም ወይም በትክክል አልገባም ፡ እባኮትን እንደገና ማስጠንቀቅ ይሞክሩ።");
+      }
     } catch (error) {
       console.error("Error deleting document:", error);
     }
   };
+  
         return (
                 <div className="row_posters">
                   <span className='st'>የወጣቶች አባላት መረጃ</span>
