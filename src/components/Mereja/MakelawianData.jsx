@@ -1,19 +1,40 @@
 import React, {useEffect,useState, useMemo} from 'react'
 import IconButton from '@mui/material/IconButton';
+import {InputLabel,MenuItem, FormControl,Select } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import DBHandler from '../Storage/PouchDBComponent';
 import "./Mereja.css"
 
 
-function MakelawianData() {
+function MakelawianData({type}) {
     const [data,setData]= useState([]);
     const database = useMemo(() => {
       return new DBHandler("Makelawian");
     }, []);
+    function datafilter(type, data){
+      if(type === 'm'){
+        return data.filter(function(dt) {
+          return dt.doc.churchService === 'መዝሙር ክፍል';
+        });
+      }
+      if(type === 'k'){
+        return data.filter(function(dt) {
+          return dt.doc.churchService === 'ኪነ ጥበብ';
+        });
+      }
+      if(type === 's'){
+        return data.filter(function(dt) {
+          return dt.doc.churchService === 'ምግባረ ሰናይ';
+        });
+      }
+      return data;
+
+    }
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedData = await database.allData();
+        let fetchedData = await database.allData();
+        fetchedData = datafilter(type, fetchedData);
         setData(fetchedData || []);
 
       }
@@ -35,7 +56,8 @@ function MakelawianData() {
     
       if (enteredName === document.fullName) {
         await database.delete(id);
-        const fetchedData = await database.allData();
+        let fetchedData = await database.allData();
+        fetchedData = datafilter(type, fetchedData);
         setData(fetchedData || []);
       } else {
       
@@ -45,6 +67,22 @@ function MakelawianData() {
       console.error("Error deleting document:", error);
     }
   };
+  const handleService = async (id, event) => {
+    const selectedValue = event.target.value;
+    try {
+      const document = await database.get(id);
+      document.churchService = selectedValue;
+      await database.update(document);
+      let fetchedData = await database.allData();
+      fetchedData = datafilter(type, fetchedData);
+      setData(fetchedData || []);
+
+    }
+    catch(error){
+      console.error("Error updating document", error);
+    }
+
+  }
         return (
                 <div className="row_posters">
                     <span className='st'>የማእከላዊያን አባላት መረጃ</span>
@@ -76,6 +114,7 @@ function MakelawianData() {
                             <th >ተጠሪ የተሰማሩበት የሥራ ዘርፍ</th>
                             <th>የክፍሉ ተጠሪ ስም</th>
                             <th>የተመዘገበበት ቀን</th>
+                            <th className='s-2'>የአገልግሎት ክፍል</th>
                         
                         </tr>
                     </thead>
@@ -110,7 +149,22 @@ function MakelawianData() {
                                 <td>{row.doc.workPlace || "N/A"}</td>
                                 <td>{row.doc.classrepName || "N/A"}</td>
                                 <td>{row.doc.registerDate || "N/A"}</td>
-
+                                <td>
+                                <FormControl style={{margin:0,padding:0, width:"90%" }}>
+                                <InputLabel >የአገልግሎት ክፍል ቀይር</InputLabel>
+                                <Select
+                                  value = {row.doc.churchService || ""}
+                                  name="churchService"
+                                  label="የአገልግሎት ክፍል ቀይር"
+                                  onChange={(event) => handleService(row.doc._id,event)}
+                                >
+                                  <MenuItem value={"ማስተባበሪያ"}>ማስተባበሪያ</MenuItem>
+                                  <MenuItem value={"መዝሙር ክፍል"}>መዝሙር ክፍል</MenuItem>
+                                  <MenuItem value={"ኪነ ጥበብ"}>ኪነ ጥበብ</MenuItem>
+                                  <MenuItem value={"ምግባረ ሰናይ"}>ምግባረ ሰናይ</MenuItem>
+                                </Select>
+                              </FormControl>
+                                </td>
 
                                
 

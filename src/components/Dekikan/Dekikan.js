@@ -50,6 +50,7 @@ export default function Dekikan() {
             respondantFamilyResponse: '',
             occupation: '',
             workPlace: '',
+            churchService:'ማስተባበሪያ',
         },
       
         validateOnBlur: true,

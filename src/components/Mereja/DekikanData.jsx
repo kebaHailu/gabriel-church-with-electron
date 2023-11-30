@@ -6,15 +6,38 @@ import DBHandler from '../Storage/PouchDBComponent';
 import "./Mereja.css"
 
 
-function DekikanData() {
+function DekikanData({type}) {
     const [data,setData]= useState([]);
     const database = useMemo(() => {
       return new DBHandler("Dekikan");
     }, []);
+    function datafilter(type, data){
+      if(type === 'm'){
+        return data.filter(function(dt) {
+          return dt.doc.churchService === 'መዝሙር ክፍል';
+        });
+      }
+      if(type === 'k'){
+        return data.filter(function(dt) {
+          return dt.doc.churchService === 'ኪነ ጥበብ';
+        });
+      }
+      if(type === 's'){
+        return data.filter(function(dt) {
+          return dt.doc.churchService === 'ምግባረ ሰናይ';
+        });
+      }
+      return data;
+
+    }
+
+    
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedData = await database.allData();
+        let fetchedData = await database.allData();
+        fetchedData = datafilter(type, fetchedData);
+        
         setData(fetchedData || []);
 
       }
@@ -23,29 +46,41 @@ function DekikanData() {
       }
     };
     fetchData();
-  }, [database]);
+  }, [database,type]);
 
   const handleDelete = async (id) => {
-    
     var enteredName = prompt("ይህን መረጃ ለመደምሰስ እርግጠኛ ከሆኑ የተማሪውን ሙሉ ስም ያስገቡ !");
-  
     try {
-      
       const document = await database.get(id);
-  
-    
       if (enteredName === document.fullName) {
         await database.delete(id);
-        const fetchedData = await database.allData();
+        let fetchedData = await database.allData();
+        fetchedData = datafilter(type, fetchedData);
         setData(fetchedData || []);
       } else {
-      
-        alert("ስም አልተመዘገበም ወይም በትክክል አልገባም ፡ እባኮትን እንደገና ማስጠንቀቅ ይሞክሩ።");
+        alert("ስም አልተመዘገበም ወይም በትክክል አልገባም ፡ እባኮትን እንደገና በማስተካከል ይሞክሩ።");
       }
     } catch (error) {
       console.error("Error deleting document:", error);
     }
   };
+
+  const handleService = async (id, event) => {
+    const selectedValue = event.target.value;
+    try {
+      const document = await database.get(id);
+      document.churchService = selectedValue;
+      await database.update(document);
+      let fetchedData = await database.allData();
+      fetchedData = datafilter(type, fetchedData);
+      setData(fetchedData || []);
+
+    }
+    catch(error){
+      console.error("Error updating document", error);
+    }
+
+  }
         return (
           <div className="row_posters">
                 <span className='st'>የደቂቃን አባላት መረጃ</span><br/>
@@ -106,14 +141,15 @@ function DekikanData() {
                                 <td>{row.doc.classrepName || "N/A"}</td>
                                 <td>{row.doc.registerdate || "N/A"}</td>
                                 <td>
-                                <FormControl className="formcontrol">
-                                <InputLabel >የአገልግሎት ክፍል ምረጥ</InputLabel>
+                                <FormControl style={{margin:0,padding:0, width:"90%" }}>
+                                <InputLabel >የአገልግሎት ክፍል ቀይር</InputLabel>
                                 <Select
-                                  // value={formik.values.schoolcondition || ""}
-                                  name="schoolcondition"
-                                  label="schoolcondition"
-                                  // onChange={formik.handleChange}
+                                  value = {row.doc.churchService || ""}
+                                  name="churchService"
+                                  label="የአገልግሎት ክፍል ቀይር"
+                                  onChange={(event) => handleService(row.doc._id,event)}
                                 >
+                                  <MenuItem value={"ማስተባበሪያ"}>ማስተባበሪያ</MenuItem>
                                   <MenuItem value={"መዝሙር ክፍል"}>መዝሙር ክፍል</MenuItem>
                                   <MenuItem value={"ኪነ ጥበብ"}>ኪነ ጥበብ</MenuItem>
                                   <MenuItem value={"ምግባረ ሰናይ"}>ምግባረ ሰናይ</MenuItem>

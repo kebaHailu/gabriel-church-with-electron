@@ -59,6 +59,7 @@ export default function Makelawian() {
             occupation:'',
             workPlace:'',
             classrepName:'',
+            churchService:'ማስተባበሪያ',
 
 
 

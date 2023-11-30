@@ -49,6 +49,7 @@ export default function Wetatoch() {
             churchFatherName: '',
             churchFatherPhone: '',
             classrepName: '',
+            churchService:'ማስተባበሪያ',
         },
         validateOnBlur: true,
         onSubmit:(values, {setSubmitting, event}) => {

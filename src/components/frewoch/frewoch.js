@@ -50,6 +50,7 @@ export default function Frewoch() {
             churchFatherName: '',
             churchFatherPhone: '',
             classrepName: '',
+            churchService:'ማስተባበሪያ',
         },
         validateOnBlur: true,
         onSubmit:(values, {setSubmitting, event}) => {
@@ -91,7 +92,6 @@ export default function Frewoch() {
                         onChange={formik.handleChange}
                         required
                         variant="standard"
-                        helperText="የሙሉ ስም ያስገቡ"
                     />
                         <DatePicker
                          value={formik.values.date || null}
