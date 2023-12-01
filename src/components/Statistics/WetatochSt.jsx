@@ -166,12 +166,12 @@ const WetatochSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["Male", "Female"],
+        categories: ["ወንድ", "ሴት"],
       },
     },
     series: [
       {
-        name: "Gender CLASSIFICATION",
+        name: "የወጣት አባላት ጾታ",
         data: [maleCount, femaleCount],
       },
     ],
@@ -182,12 +182,12 @@ const WetatochSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["Zema", "Dirset", "Kebero", "Kihinet", "Zemare"],
+        categories: ["ዜማ መድረስ", "ሥነጽሁፍ ድርሰት", "ከበሮ መምታት", "በክህነት", "የዝማሬ መሣሪያዎች"],
       },
     },
     series: [
       {
-        name: "ChurchContrubution ",
+        name: "የቤተክርስቲያን አገልግሎት ",
         data: [zema, dirst, kebero, kihinet, zemare],
       },
     ],
@@ -199,12 +199,12 @@ const WetatochSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["Kedamayi", "Salsai", "Kaliay", "Rabiay"],
+        categories: ["ቀዳማይ", "ሳልሳይ", "ካልዓይ", "ራብዓይ"],
       },
     },
     series: [
       {
-        name: "ChurchEducation ",
+        name: "የተከታተሉት የመንፈሳዊ ት/ት ",
         data: [kedamayi, salsai, kaliay, rabiay],
       },
     ],
@@ -216,12 +216,12 @@ const WetatochSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["amerar", "bekihnet", "abalenet", "alawkm"],
+        categories: ["በአመራር", "በክህነት", "በአባልነት", "አገልግዬ አላውቅም"],
       },
     },
     series: [
       {
-        name: "otherchurch",
+        name: "በሌላ ሰ/ት/ቤት ያገለገሉበት ዘርፍ",
         data: [amerar, bekihnet, abalenet, alawkm],
       },
     ],
@@ -233,18 +233,18 @@ const WetatochSt = () => {
       },
       xaxis: {
         categories: [
-          "phd",
-          "masters",
-          "degree",
-          "diploma",
-          "secondary",
-          "primary",
+          "ፒኤችዲ",
+          "ማስተርስ",
+          "ዲግሪ",
+          "ዲፕሎማ",
+          "2ኛ ደርጃ",
+          "1ኛ ደርጃ",
         ],
       },
     },
     series: [
       {
-        name: "Education",
+        name: "የት/ት ደረጃ",
         data: [phd, masters, degree, diploma, secondary, primary],
       },
     ],
@@ -252,9 +252,9 @@ const WetatochSt = () => {
 
   return (
     <>
-      <h1>
-        Wotatoch Statistics Chart <i className="fas fa-user"></i>{" "}
-      </h1>
+      <h3 style={{marginTop:30 , marginBottom:10}}>
+      የወጣት አባላት ስታትስቲክስ 
+      </h3>
 
      
       <div className="chartsone">

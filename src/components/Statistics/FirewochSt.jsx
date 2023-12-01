@@ -175,17 +175,17 @@ const FirewochSt = () => {
 
   const state = {
     options: {
-      colors: ["#87CEEB", "#E91E63", "#008000", "#FFFF00"],
+      
       chart: {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["Dekikan", "Frewoch", "Makelawian", "Wetatoch"],
+        categories: ["ደቂቃን", "ፍሬዎች", "ማዕከላውያን", "ወጣቶች"],
       },
     },
     series: [
       {
-        name: "COMPONENT CLASSIFICATION",
+        name: "የተማሪዎች ክፍል ንጻሮ",
         data: [dekikanCount, frewochCount, makelawianCount, wetatochCount],
       },
     ],
@@ -197,12 +197,12 @@ const FirewochSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["Male", "Female"],
+        categories: ["ወንድ", "ሴት"],
       },
     },
     series: [
       {
-        name: "Gender CLASSIFICATION",
+        name: "የፍሬ አባላት ጾታ",
         data: [maleCount, femaleCount],
       },
     ],
@@ -213,12 +213,12 @@ const FirewochSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["Zema", "Dirset", "Kebero", "Kihinet", "Zemare"],
+        categories: ["ዜማ መድረስ", "ሥነጽሁፍ ድርሰት", "ከበሮ መምታት", "በክህነት", "የዝማሬ መሣሪያዎች"],
       },
     },
     series: [
       {
-        name: "ChurchContrubution ",
+        name: "የቤተክርስቲያን አገልግሎት ",
         data: [zema, dirst, kebero, kihinet, zemare],
       },
     ],
@@ -230,12 +230,12 @@ const FirewochSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["Kedamayi", "Salsai", "Kaliay", "Rabiay"],
+        categories: ["ቀዳማይ", "ሳልሳይ", "ካልዓይ", "ራብዓይ"],
       },
     },
     series: [
       {
-        name: "ChurchEducation ",
+        name: "የተከታተሉት የመንፈሳዊ ት/ት ",
         data: [kedamayi, salsai, kaliay, rabiay],
       },
     ],
@@ -247,12 +247,12 @@ const FirewochSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["amerar", "bekihnet", "abalenet", "alawkm"],
+        categories: ["በአመራር", "በክህነት", "በአባልነት", "አገልግዬ አላውቅም"],
       },
     },
     series: [
       {
-        name: "otherchurch",
+        name: "በሌላ ሰ/ት/ቤት ያገለገሉበት ዘርፍ",
         data: [amerar, bekihnet, abalenet, alawkm],
       },
     ],
@@ -264,18 +264,18 @@ const FirewochSt = () => {
       },
       xaxis: {
         categories: [
-          "phd",
-          "masters",
-          "degree",
-          "diploma",
-          "secondary",
-          "primary",
+          "ፒኤችዲ",
+          "ማስተርስ",
+          "ዲግሪ",
+          "ዲፕሎማ",
+          "2ኛ ደርጃ",
+          "1ኛ ደርጃ",
         ],
       },
     },
     series: [
       {
-        name: "Education",
+        name: "የት/ት ደረጃ",
         data: [phd, masters, degree, diploma, secondary, primary],
       },
     ],
@@ -284,9 +284,9 @@ const FirewochSt = () => {
   return (
     <>
       <h1>
-        Firewoch Statistics Chart <i className="fas fa-user"></i>{" "}
+        የአባላት ስታቲክስ ቻርት በየዘርፉ <i className="fas fa-user"></i>{" "}
       </h1>
-
+      
       <Chart
         className="chart"
         options={state.options}
@@ -294,6 +294,9 @@ const FirewochSt = () => {
         type="bar"
       />
       <p>{state.series[0].name}</p>
+        <h3 style={{marginTop:30 , marginBottom:10}}>
+        የፍሬ አባላት ስታትስቲክስ 
+      </h3>
       <div className="chartsone">
         <div>
           <Chart

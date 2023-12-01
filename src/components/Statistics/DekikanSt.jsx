@@ -92,9 +92,9 @@ const DekikanSt = () => {
 
   return (
     <>
-      <h1>
-        Dekikan Statistics Chart <i className="fas fa-user"></i>{" "}
-      </h1>
+      <h3 style={{marginTop:30 , marginBottom:10}}>
+        የደቂቃን ተማሪዎች ስታትስቲክስ 
+      </h3>
 
       <div className="chartsone">
         <div>
