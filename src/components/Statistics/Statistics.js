@@ -6,10 +6,13 @@ import DekikanSt from './DekikanSt'
 
 function Statistics() {
   return (
-    <div>
+    <div className='bgg-adjust'>
 
-
+      <h1>
+        የአባላት ስታቲክስ ቻርት በየዘርፉ <i className="fas fa-user"></i>{" "}
+      </h1>
       <FirewochSt  />
+      <hr className='hradj'/>
       <WetatochSt/>
       <MeakelawianSt/>
       <DekikanSt/>

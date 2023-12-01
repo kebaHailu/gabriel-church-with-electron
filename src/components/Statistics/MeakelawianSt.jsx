@@ -163,12 +163,12 @@ const MeakelawianSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["Male", "Female"],
+        categories: ["ወንድ", "ሴት"],
       },
     },
     series: [
       {
-        name: "Gender CLASSIFICATION",
+        name: "የማዕከላውያን አባላት ጾታ",
         data: [maleCount, femaleCount],
       },
     ],
@@ -179,12 +179,12 @@ const MeakelawianSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["Zema", "Dirset", "Kebero", "Kihinet", "Zemare"],
+        categories: ["ዜማ መድረስ", "ሥነጽሁፍ ድርሰት", "ከበሮ መምታት", "በክህነት", "የዝማሬ መሣሪያዎች"],
       },
     },
     series: [
       {
-        name: "ChurchContrubution ",
+        name: "የቤተክርስቲያን አገልግሎት",
         data: [zema, dirst, kebero, kihinet, zemare],
       },
     ],
@@ -197,17 +197,17 @@ const MeakelawianSt = () => {
       },
       xaxis: {
         categories: [
-          "Kedamayi",
-          "Salsai",
-          "Kaliay",
-          "Rabiay",
-          "alteketatelkum ",
+          "ቀዳማይ",
+          "ሳልሳይ",
+          "ካልዓይ",
+          "ራብዓይ",
+          "አልተከታተልኩም",
         ],
       },
     },
     series: [
       {
-        name: "ChurchEducation ",
+        name: "የተከታተሉት የመንፈሳዊ ት/ት",
         data: [kedamayi, salsai, kaliay, rabiay, alteketatelkum],
       },
     ],
@@ -219,12 +219,12 @@ const MeakelawianSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["amerar", "bekihnet", "abalenet", "alawkm"],
+        categories: ["በአመራር", "በክህነት", "በአባልነት", "አገልግዬ አላውቅም"],
       },
     },
     series: [
       {
-        name: "other Church",
+        name: "በሌላ ሰ/ት/ቤት ያገለገሉበት ዘርፍ",
         data: [amerar, bekihnet, abalenet, alawkm],
       },
     ],
@@ -236,12 +236,12 @@ const MeakelawianSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["diploma", "mesenado", "secondary", "primary"],
+        categories: ["ዲፕሎማ", "መሰናዶ", "2ኛ ደርጃ", "1ኛ ደርጃ"],
       },
     },
     series: [
       {
-        name: "schoolcondition",
+        name: "የት/ት ደረጃ",
         data: [diploma, mesenado, secondary, primary],
       },
     ],
@@ -249,10 +249,9 @@ const MeakelawianSt = () => {
 
   return (
     <>
-      <h1>
-        Makelawian Statistics Chart <i className="fas fa-user"></i>{" "}
-      </h1>
-
+       <h3 style={{marginTop:30 , marginBottom:10}}>
+        የማዕከላውያን አባላት ስታትስቲክስ 
+      </h3>
       <div className="chartsone">
         <div>
           <Chart

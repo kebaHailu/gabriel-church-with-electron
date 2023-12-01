@@ -62,12 +62,12 @@ const DekikanSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["Male", "Female"],
+        categories: ["ወንድ", "ሴት"],
       },
     },
     series: [
       {
-        name: "Gender CLASSIFICATION",
+        name: "የማዕከላውያን አባላት ጾታ",
         data: [maleCount, femaleCount],
       },
     ],
@@ -79,12 +79,12 @@ const DekikanSt = () => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: ["alteketatelkum", "secondary", "primary"],
+        categories: ["አልተከታተልኩም", "2ኛ ደርጃ", "1ኛ ደርጃ"],
       },
     },
     series: [
       {
-        name: "Education",
+        name: "የት/ት ደረጃ",
         data: [alteketatelkum, secondary, primary],
       },
     ],
@@ -111,7 +111,7 @@ const DekikanSt = () => {
           <Chart
             options={DekikanEducation.options}
             series={DekikanEducation.series}
-            type="area"
+            type="bar"
             width="450"
           />
           <p>{DekikanEducation.series[0].name}</p>

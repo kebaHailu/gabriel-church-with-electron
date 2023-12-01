@@ -185,7 +185,7 @@ const FirewochSt = () => {
     },
     series: [
       {
-        name: "የተማሪዎች ክፍል ንጻሮ",
+        name: "የተማሪዎች ክፍል ንጻሬ",
         data: [dekikanCount, frewochCount, makelawianCount, wetatochCount],
       },
     ],
@@ -218,7 +218,7 @@ const FirewochSt = () => {
     },
     series: [
       {
-        name: "የቤተክርስቲያን አገልግሎት ",
+        name: "የቤተክርስቲያን አገልግሎት",
         data: [zema, dirst, kebero, kihinet, zemare],
       },
     ],
@@ -283,9 +283,7 @@ const FirewochSt = () => {
 
   return (
     <>
-      <h1>
-        የአባላት ስታቲክስ ቻርት በየዘርፉ <i className="fas fa-user"></i>{" "}
-      </h1>
+      
       
       <Chart
         className="chart"
