@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Home.css";
 
 import logo from "../../Assets/Images/logo.png";
@@ -7,7 +7,36 @@ import wotatoch from "../../Assets/Images/wotat.jpeg";
 import Meakelawian from "../../Assets/Images/meakel.jpg";
 import dekikan from "../../Assets/Images/dekikan.jpg";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { TextField, Button, Grid } from "@mui/material";
+import emailjs from "emailjs-com";
 function Home() {
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+   const onSubmit = (e) => {
+     e.preventDefault();
+
+     // Send the message via email
+     emailjs
+       .sendForm(
+         "service_aao4l5f",
+         "template_xwvv0ul",
+         e.target,
+         "NppqtQO-SCXAtch64"
+       )
+       .then((response) => {
+         console.log("Email sent successfully:", response.text);
+         // Reset the form fields
+         setName("");
+         setEmail("");
+         setMessage("");
+       })
+       .catch((error) => {
+         console.error("Email sending failed:", error);
+       });
+   };
+
   return (
     <>
       <div className="buttonList">
@@ -161,6 +190,60 @@ function Home() {
           </p>
         </div>
       </div>
+      <form onSubmit={onSubmit}>
+        <Grid container spacing={2}>
+          <Grid item xs={4.5} style={{ marginLeft: "9%" }}>
+            <TextField
+              name='user_name'
+              label="Your Name"
+              placeholder="Enter your name"
+              fullWidth
+              type="text"
+              
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={4.5}>
+            <TextField
+            name='user_email'
+              label="Your Email"
+              placeholder="Enter your email"
+              fullWidth
+              
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={9} style={{ marginLeft: "9%" }}>
+            <TextField
+            name="message"
+              label="Message"
+              placeholder="Enter your message"
+             
+              fullWidth
+              multiline
+              rows={4}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+          }}
+        >
+          <Button variant="contained" color="primary" type="submit">
+            Submit
+          </Button>
+        </Grid>
+      </form>
     </>
   );
 }

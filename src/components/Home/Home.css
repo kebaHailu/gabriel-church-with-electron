@@ -100,7 +100,12 @@
   align-items: flex-start;
   /* text-align: center; */
   margin-left: 8%;
+ 
 
+}
+     
+#atekakem{
+ margin-bottom: 30px;
 }
 
 .higigat h2,.higigat h3{
@@ -117,4 +122,8 @@
 .higigat p > .MuiSvgIcon-root {
   color: #1565C0;
   margin-right: 0.5em;
+}
+.textfield{
+  margin-left: 10em;
+
 }
