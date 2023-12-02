@@ -14,28 +14,28 @@ function Home() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-   const onSubmit = (e) => {
-     e.preventDefault();
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-     // Send the message via email
-     emailjs
-       .sendForm(
-         "service_aao4l5f",
-         "template_xwvv0ul",
-         e.target,
-         "NppqtQO-SCXAtch64"
-       )
-       .then((response) => {
-         console.log("Email sent successfully:", response.text);
-         // Reset the form fields
-         setName("");
-         setEmail("");
-         setMessage("");
-       })
-       .catch((error) => {
-         console.error("Email sending failed:", error);
-       });
-   };
+    // Send the message via email
+    emailjs
+      .sendForm(
+        "service_bb1993e",
+        "template_2xpmqmj",
+        e.target,
+        "lr0D8GZvgrDtYZXYT"
+      )
+      .then((response) => {
+
+
+        setName("");
+        setEmail("");
+        setMessage("");
+      })
+      .catch((error) => {
+        console.error("Email sending failed:", error);
+      });
+  };
 
   return (
     <>
@@ -60,7 +60,7 @@ function Home() {
             <img src={firewoch} alt="" />
           </div>
           <div>
-            <p>
+            <p >
               የቅዱስ ገብርኤል ታቦት ከጎንደር ክፍለ ሃገር መጥቶ እስከ ግንቦት 1/1945 ዓ.ም ድረስ በደባልነት
               በጌቴሴማኔ ማርያም ገዳም ይኖር ነበር። የከተማውም ህዝብ ስርዓተ አምልኮቱን ይፈፅም የነበረው በዚሁ ገዳም
               ነበር። በወቅቱ የነበሩት ታላላቅ የሀገር ሽማግሌዎች ተሰባስበው የገዳሙን አስተዳደር መምህር ገ/ሥላሴን
@@ -91,7 +91,7 @@ function Home() {
             <img src={wotatoch} alt="" />
           </div>
         </div>
-        <div className="firewoch meakel">
+        <div className="firewoch c">
           <div>
             <img src={Meakelawian} alt="" />
           </div>
@@ -190,60 +190,63 @@ function Home() {
           </p>
         </div>
       </div>
-      <form onSubmit={onSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={4.5} style={{ marginLeft: "9%" }}>
-            <TextField
-              name='user_name'
-              label="Your Name"
-              placeholder="Enter your name"
-              fullWidth
-              type="text"
-              
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+      <div className="asteyayet-boarder">
+        <h2 id="asteyayet" style={{ paddingBottom: "20px" }}>አስተያየት መስጫ</h2>
+        <form onSubmit={onSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={4.5} style={{ marginLeft: "9%" }}>
+              <TextField
+                name='user_name'
+                label="ሙሉ ስም"
+                placeholder="እባኮ ስምዎን ያስገቡ"
+                fullWidth
+                type="text"
+
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={4.5}>
+              <TextField
+                name='user_email'
+                label="ኢሜል"
+                placeholder="እባኮ ኢሜልዎን ያስገቡ"
+                fullWidth
+
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={9} style={{ marginLeft: "9%" }}>
+              <TextField
+                name="message"
+                label="መልእክት"
+                placeholder="እባኮ መልእክትዎን ያስገቡ"
+
+                fullWidth
+                multiline
+                rows={4}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={4.5}>
-            <TextField
-            name='user_email'
-              label="Your Email"
-              placeholder="Enter your email"
-              fullWidth
-              
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+          <Grid
+            item
+            xs={12}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "20px",
+            }}
+          >
+            <Button variant="contained" color="primary" type="submit">
+              ይላኩ
+            </Button>
           </Grid>
-          <Grid item xs={9} style={{ marginLeft: "9%" }}>
-            <TextField
-            name="message"
-              label="Message"
-              placeholder="Enter your message"
-             
-              fullWidth
-              multiline
-              rows={4}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "20px",
-          }}
-        >
-          <Button variant="contained" color="primary" type="submit">
-            Submit
-          </Button>
-        </Grid>
-      </form>
+        </form>
+      </div>
     </>
   );
 }
