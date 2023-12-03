@@ -98,3 +98,13 @@
   border-radius: 2px;
   border: none;
 }
+.search-container{
+ 
+  background-color: #2f4460 !important;
+  border-radius: 2px;
+  border: none;
+  color: lightblue !important;
+  
+  padding: 1em;
+  display: flex;
+}
