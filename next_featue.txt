@@ -1,0 +1,4 @@
+Add multiple classes from mastebaberia -> mezmur -> kine-tebeb -> megebare-senay
+search feature fix 
+work on setting feature 
+add statics from mastebaberia -> mezmur -> kine-tebeb -> megebare-senay

@@ -45,9 +45,12 @@ export default function Frewoch() {
         },
         validateOnBlur: true,
         onSubmit:(values, {setSubmitting, event}) => {
-
+          console.log(values)
             if (!formik.values.date && !formik.values.sex && !formik.values.marriage && !formik.values.churchContrbution && !formik.values.cheducation && !formik.values.otherchurch && !formik.values.registerdate){
-                alert("እባክዎ ባዶ ቦታዎችን በመምረጥ መረጃዎችን ያስገቡ");
+   
+        
+              
+              alert("እባክዎ ባዶ ቦታዎችን በመምረጥ መረጃዎችን ያስገቡ");
             }
             else{
                 const database = new DBHandler('Frewoch');
@@ -85,7 +88,7 @@ export default function Frewoch() {
                         variant="standard"
                     />
                         <DatePicker
-                         value={formik.values.date || null}
+                         value={formik.values.Birthdate || null}
                          onChange={(date) => {
                            const birthdate = date ? date.format("YYYY-MM-DD") : "";
                            formik.setFieldValue("Birthdate", birthdate);

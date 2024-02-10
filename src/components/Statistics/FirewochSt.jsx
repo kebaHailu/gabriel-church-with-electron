@@ -292,6 +292,7 @@ const FirewochSt = () => {
         type="bar"
       />
       <p>{state.series[0].name}</p>
+      <hr className='hradj' />
         <h3 style={{marginTop:30 , marginBottom:10}}>
         የፍሬ አባላት ስታትስቲክስ 
       </h3>
